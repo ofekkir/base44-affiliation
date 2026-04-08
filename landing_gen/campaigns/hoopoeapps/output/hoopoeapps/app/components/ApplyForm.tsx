@@ -144,7 +144,6 @@ export function ApplyForm() {
                   onKeyDown={(e) => e.key === 'Enter' && advance()}
                   autoComplete="email"
                   maxLength={254}
-                  autoFocus
                   aria-describedby="err-email"
                 />
                 <span id="err-email" className="form-error-slot" role="alert">
