@@ -187,7 +187,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
 .nav-logo-badge {
   display: inline-flex;
   align-items: center;
-  background: var(--color-primary);
+  background: var(--color-text);
   color: var(--color-bg);
   padding: 0.25rem 0.875rem 0.35rem;
   border-radius: 10px;
@@ -201,7 +201,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   transition: background 0.2s, transform 0.15s;
 }
 .nav-logo-badge:hover {
-  background: var(--color-primary-hover);
+  background: var(--color-primary);
   transform: translateY(-1px);
 }
 .nav-logo-badge--sm {
@@ -233,11 +233,11 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
 .hero::after {
   content: '';
   position: absolute;
-  top: -20%;
-  right: -5%;
-  width: 60%;
-  height: 130%;
-  background: radial-gradient(ellipse, rgba(217, 84, 30, 0.18) 0%, transparent 65%);
+  top: -25%;
+  right: -18%;
+  width: 48%;
+  height: 120%;
+  background: radial-gradient(ellipse, rgba(217, 84, 30, 0.14) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
