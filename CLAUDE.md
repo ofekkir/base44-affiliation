@@ -18,6 +18,17 @@
 │   └── hoopoeapps-landing-page-plan.md  ← HoopoeApps landing page spec
 ├── /context   ← spun out when 3+ related session learnings accumulate
 └── /landing_gen/campaigns/hoopoeapps/output/hoopoeapps/  ← generated Next.js landing page
+    ├── app/
+    │   ├── components/
+    │   │   ├── ApplyForm.tsx       ← client component: form state + submission
+    │   │   ├── AffiliateLink.tsx   ← client component: tracked affiliate link
+    │   │   ├── CTAButton.tsx       ← client component: tracked CTA anchor
+    │   │   └── PageEffects.tsx     ← client component: session init + scroll-reveal
+    │   ├── privacy/page.tsx        ← Privacy Policy page
+    │   ├── terms/page.tsx          ← Terms of Service page
+    │   ├── robots.ts               ← robots.txt via Next.js
+    │   └── sitemap.ts              ← sitemap.xml via Next.js
+    └── lib/analytics.ts            ← shared: trackEvent, registerSession, submitLead
 ```
 
 ## Note-Taking

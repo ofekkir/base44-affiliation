@@ -24,21 +24,33 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
 const HOTJAR_ID = process.env.NEXT_PUBLIC_HOTJAR_ID || ''
 
 export const metadata: Metadata = {
-  title: 'HoopoeApps — We run your ads for free',
+  metadataBase: new URL('https://hoopoeapps.com'),
+  title: 'Free Ad Management for App Builders | HoopoeApps',
   description:
     'Built a vibe-coded app? We set up and manage your Google and Meta ad campaigns professionally, at no charge. You fund the ads. We do the work.',
   openGraph: {
-    title: 'HoopoeApps — We run your ads for free',
+    title: 'Free Ad Management for App Builders | HoopoeApps',
     description:
       'We set up and manage your Google and Meta campaigns — professionally. You fund the ads. We do the work, at no charge.',
     url: 'https://hoopoeapps.com',
     siteName: 'HoopoeApps',
     type: 'website',
+    // Create public/og-image.jpg (1200×630) to enable social preview images
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'HoopoeApps — Free ad management for app builders',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'HoopoeApps — We run your ads for free',
-    description: 'Free ad management for vibe-coded apps. You set the budget. We handle everything else.',
+    title: 'Free Ad Management for App Builders | HoopoeApps',
+    description: 'Free Google and Meta ad management for app builders. You set the budget. We handle everything else.',
+    // Create public/og-image.jpg (1200×630) to enable Twitter card preview
+    images: ['/og-image.jpg'],
   },
 }
 
@@ -65,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Google Tag Manager */}
         {GTM_ID && (
-          <Script id="gtm-init" strategy="beforeInteractive">
+          <Script id="gtm-init" strategy="afterInteractive">
             {`
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -91,8 +103,51 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `}
           </Script>
         )}
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@graph': [
+                {
+                  '@type': 'Organization',
+                  '@id': 'https://hoopoeapps.com/#organization',
+                  name: 'HoopoeApps',
+                  url: 'https://hoopoeapps.com',
+                  founder: [
+                    { '@type': 'Person', name: 'Ofek Kirzner', url: 'https://www.linkedin.com/in/ofekkirzner/' },
+                    { '@type': 'Person', name: 'Dan Riesel', url: 'https://www.linkedin.com/in/danriesel/' },
+                  ],
+                },
+                {
+                  '@type': 'Service',
+                  '@id': 'https://hoopoeapps.com/#service',
+                  name: 'Free Ad Management for App Builders',
+                  provider: { '@id': 'https://hoopoeapps.com/#organization' },
+                  description:
+                    'HoopoeApps sets up and manages Google and Meta ad campaigns for indie app builders at no cost. Founders fund the ad spend; HoopoeApps handles strategy, copy, targeting, and optimization.',
+                  offers: {
+                    '@type': 'Offer',
+                    price: '0',
+                    priceCurrency: 'USD',
+                    description: 'Free ad campaign management — you fund the spend, we handle everything else.',
+                  },
+                },
+                {
+                  '@type': 'WebSite',
+                  '@id': 'https://hoopoeapps.com/#website',
+                  url: 'https://hoopoeapps.com',
+                  name: 'HoopoeApps',
+                  publisher: { '@id': 'https://hoopoeapps.com/#organization' },
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body>
+
         <a href="#main-content" className="skip-link">Skip to main content</a>
 
         {GTM_ID && (

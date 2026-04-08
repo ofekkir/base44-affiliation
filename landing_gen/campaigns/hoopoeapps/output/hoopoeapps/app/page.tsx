@@ -1,461 +1,27 @@
-'use client'
-
-import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
+import { CTAButton } from './components/CTAButton'
+import { AffiliateLink } from './components/AffiliateLink'
+import { ApplyForm } from './components/ApplyForm'
+import { PageEffects } from './components/PageEffects'
 
-// ── Config ──────────────────────────────────────────────────────────────
-const COLLECTOR_URL = process.env.NEXT_PUBLIC_COLLECTOR_URL || ''
-const PRODUCT_NAME = process.env.NEXT_PUBLIC_PRODUCT_NAME || 'HoopoeApps'
-const PRODUCT_SLUG = process.env.NEXT_PUBLIC_PRODUCT_SLUG || 'hoopoeapps'
-const CAMPAIGN_SLUG = process.env.NEXT_PUBLIC_CAMPAIGN_SLUG || 'hoopoeapps_launch'
-const PAGE_VARIANT_ID = process.env.NEXT_PUBLIC_PAGE_VARIANT_ID || '00000000-0000-0000-0000-000000000000'
-// Replace with your Base44 affiliate tracking URL from your affiliate dashboard
-const BASE44_AFFILIATE_URL = process.env.NEXT_PUBLIC_BASE44_AFFILIATE_URL || 'https://base44.com'
-const PAGE_VERSION = 'v1'
-const PAGE_VARIANT = 'default'
-
-// ── Analytics ─────────────────────────────────────────────────────────────
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void
-    hj?: (...args: unknown[]) => void
-  }
-}
-
-function trackEvent(name: string, params?: Record<string, string | number | boolean>): void {
-  if (typeof window === 'undefined') return
-  if (typeof window.gtag === 'function') window.gtag('event', name, params ?? {})
-  if (typeof window.hj === 'function') window.hj('event', name)
-}
-
-// ── Collector ────────────────────────────────────────────────────────────
-interface FallbackAttrs {
-  page_variant_id: string
-  product_name: string
-  product_slug: string
-  campaign_slug: string
-  page_version: string
-  page_variant: string
-  referrer?: string
-  utm_source?: string
-  utm_medium?: string
-  utm_campaign?: string
-  utm_content?: string
-  utm_term?: string
-  user_agent?: string
-  landing_url?: string
-}
-
-async function registerSession(): Promise<string | null> {
-  if (!COLLECTOR_URL) return null
-  try {
-    const params = new URLSearchParams(window.location.search)
-    const sessionId = crypto.randomUUID()
-    const body = {
-      id: sessionId,
-      page_variant_id: PAGE_VARIANT_ID,
-      product_name: PRODUCT_NAME,
-      product_slug: PRODUCT_SLUG,
-      campaign_slug: CAMPAIGN_SLUG,
-      page_version: PAGE_VERSION,
-      page_variant: PAGE_VARIANT,
-      referrer: document.referrer || undefined,
-      utm_source: params.get('utm_source') || undefined,
-      utm_medium: params.get('utm_medium') || undefined,
-      utm_campaign: params.get('utm_campaign') || undefined,
-      utm_content: params.get('utm_content') || undefined,
-      utm_term: params.get('utm_term') || undefined,
-      user_agent: navigator.userAgent,
-      landing_url: window.location.href,
-    }
-    const res = await fetch(`${COLLECTOR_URL}/api/sessions`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    })
-    if (!res.ok) throw new Error(`Session POST failed: ${res.status}`)
-    const data = await res.json()
-    sessionStorage.setItem('_coll_session_id', data.session_id)
-    return data.session_id
-  } catch {
-    const params = new URLSearchParams(window.location.search)
-    const fallback: FallbackAttrs = {
-      page_variant_id: PAGE_VARIANT_ID,
-      product_name: PRODUCT_NAME,
-      product_slug: PRODUCT_SLUG,
-      campaign_slug: CAMPAIGN_SLUG,
-      page_version: PAGE_VERSION,
-      page_variant: PAGE_VARIANT,
-      referrer: document.referrer || undefined,
-      utm_source: params.get('utm_source') || undefined,
-      utm_medium: params.get('utm_medium') || undefined,
-      utm_campaign: params.get('utm_campaign') || undefined,
-      utm_content: params.get('utm_content') || undefined,
-      utm_term: params.get('utm_term') || undefined,
-      user_agent: navigator.userAgent,
-      landing_url: window.location.href,
-    }
-    sessionStorage.setItem('_coll_fallback', JSON.stringify(fallback))
-    return null
-  }
-}
-
-async function submitLead(formData: Record<string, string>): Promise<void> {
-  if (!COLLECTOR_URL) return
-  const sessionId = sessionStorage.getItem('_coll_session_id')
-  const fallbackRaw = sessionStorage.getItem('_coll_fallback')
-
-  let body: Record<string, unknown>
-  if (sessionId) {
-    body = { session_id: sessionId, action_type: 'join_waitlist', form_data: formData }
-  } else if (fallbackRaw) {
-    const fallback = JSON.parse(fallbackRaw) as FallbackAttrs
-    body = { ...fallback, action_type: 'join_waitlist', form_data: formData }
-  } else {
-    return
-  }
-
-  const res = await fetch(`${COLLECTOR_URL}/api/leads`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  })
-  if (!res.ok) throw new Error(`Lead POST failed: ${res.status}`)
-}
-
-// ── Form types ────────────────────────────────────────────────────────────
-interface AppForm {
-  app_name: string
-  app_url: string
-  app_description: string
-  target_audience: string
-  monthly_budget: string
-  email: string
-}
-
-const EMPTY_FORM: AppForm = {
-  app_name: '',
-  app_url: '',
-  app_description: '',
-  target_audience: '',
-  monthly_budget: '',
-  email: '',
-}
-
-const BUDGET_OPTIONS = ['$50–150', '$150–500', '$500+', 'Not sure yet']
-
-// ── Apply Form ─────────────────────────────────────────────────────────────
-function ApplyForm() {
-  const [form, setForm] = useState<AppForm>(EMPTY_FORM)
-  const [errors, setErrors] = useState<Partial<AppForm>>({})
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [globalError, setGlobalError] = useState('')
-
-  function updateField(field: keyof AppForm, value: string) {
-    setForm((prev) => ({ ...prev, [field]: value }))
-    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: '' }))
-  }
-
-  function validateField(field: keyof AppForm, value: string): string {
-    switch (field) {
-      case 'app_name':
-        if (!value.trim()) return 'App name is required.'
-        if (value.trim().length > 100) return 'App name must be 100 characters or fewer.'
-        return ''
-      case 'app_url':
-        if (!value.trim()) return 'App URL is required.'
-        if (!/^https?:\/\/.+/.test(value.trim())) return 'Enter a valid URL (starting with http:// or https://).'
-        return ''
-      case 'app_description':
-        if (!value.trim()) return 'Please describe your app.'
-        if (value.length > 1000) return 'Description must be 1,000 characters or fewer.'
-        return ''
-      case 'target_audience':
-        if (!value.trim()) return 'Please describe your target audience.'
-        if (value.trim().length > 300) return 'Target audience must be 300 characters or fewer.'
-        return ''
-      case 'monthly_budget': return value ? '' : 'Please select a budget range.'
-      case 'email':
-        if (!value.trim()) return 'Email is required.'
-        if (value.trim().length > 254) return 'Email address is too long.'
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) return 'Please enter a valid email address.'
-        return ''
-      default: return ''
-    }
-  }
-
-  function handleBlur(field: keyof AppForm, value: string) {
-    const err = validateField(field, value)
-    setErrors((prev) => ({ ...prev, [field]: err }))
-  }
-
-  function validate(): boolean {
-    const newErrors: Partial<AppForm> = {}
-    const fields: (keyof AppForm)[] = ['app_name', 'app_url', 'app_description', 'target_audience', 'monthly_budget', 'email']
-    fields.forEach((f) => {
-      const err = validateField(f, form[f])
-      if (err) newErrors[f] = err
-    })
-    setErrors(newErrors)
-    const firstKey = Object.keys(newErrors)[0] as keyof AppForm | undefined
-    if (firstKey && firstKey !== 'monthly_budget') {
-      document.getElementById(firstKey)?.focus()
-    }
-    return Object.keys(newErrors).length === 0
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    if (!validate()) return
-
-    setStatus('loading')
-    setGlobalError('')
-    trackEvent('form_submit_attempt')
-
-    try {
-      await submitLead({
-        app_name: form.app_name.trim(),
-        app_url: form.app_url.trim(),
-        app_description: form.app_description.trim(),
-        target_audience: form.target_audience.trim(),
-        monthly_budget: form.monthly_budget,
-        email: form.email.trim(),
-      })
-      setStatus('success')
-      trackEvent('generate_lead', { method: 'form' })
-    } catch (err) {
-      setStatus('error')
-      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.'
-      setGlobalError(msg)
-      trackEvent('form_error', { error_message: msg })
-    }
-  }
-
-  return (
-    <div className="reveal">
-      {status === 'success' ? (
-        <div className="form-success">
-          <div className="form-success-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
-              <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="1.5"/>
-              <path d="M7 12.5l3.5 3.5 6.5-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
-          <h3>We&apos;ve received your app.</h3>
-          <p>
-            We&apos;ll review it and be in touch. In the meantime, if you haven&apos;t launched yet,
-            keep building.
-          </p>
-        </div>
-      ) : (
-        <form className="apply-form" onSubmit={handleSubmit} noValidate>
-          <div className="form-field">
-            <label className="form-label" htmlFor="app_name">
-              App name <span className="required">*</span>
-            </label>
-            <input
-              id="app_name"
-              type="text"
-              className={`form-input${errors.app_name ? ' error' : ''}`}
-              placeholder="e.g. TaskFlow"
-              value={form.app_name}
-              onChange={(e) => updateField('app_name', e.target.value)}
-              onBlur={(e) => handleBlur('app_name', e.target.value)}
-              autoComplete="off"
-              maxLength={100}
-              aria-describedby={errors.app_name ? 'err-app_name' : undefined}
-            />
-            {errors.app_name && <span id="err-app_name" className="form-error" role="alert">{errors.app_name}</span>}
-          </div>
-
-          <div className="form-field">
-            <label className="form-label" htmlFor="app_url">
-              App URL <span className="required">*</span>
-            </label>
-            <input
-              id="app_url"
-              type="url"
-              className={`form-input${errors.app_url ? ' error' : ''}`}
-              placeholder="https://yourapp.com"
-              value={form.app_url}
-              onChange={(e) => updateField('app_url', e.target.value)}
-              onBlur={(e) => handleBlur('app_url', e.target.value)}
-              autoComplete="url"
-              maxLength={500}
-              aria-describedby={errors.app_url ? 'err-app_url' : undefined}
-            />
-            {errors.app_url && <span id="err-app_url" className="form-error" role="alert">{errors.app_url}</span>}
-          </div>
-
-          <div className="form-field">
-            <label className="form-label" htmlFor="app_description">
-              What does your app do? <span className="required">*</span>
-            </label>
-            <textarea
-              id="app_description"
-              className={`form-textarea${errors.app_description ? ' error' : ''}`}
-              placeholder="2–3 sentences. What problem does it solve, and how?"
-              value={form.app_description}
-              onChange={(e) => updateField('app_description', e.target.value)}
-              onBlur={(e) => handleBlur('app_description', e.target.value)}
-              rows={3}
-              maxLength={1000}
-              aria-describedby={[
-                errors.app_description ? 'err-app_description' : '',
-                'count-app_description',
-              ].filter(Boolean).join(' ') || undefined}
-            />
-            <span
-              id="count-app_description"
-              className={`form-char-count${form.app_description.length >= 900 ? ' form-char-count--warn' : ''}`}
-              aria-live="polite"
-            >
-              {form.app_description.length}/1000
-            </span>
-            {errors.app_description && (
-              <span id="err-app_description" className="form-error" role="alert">{errors.app_description}</span>
-            )}
-          </div>
-
-          <div className="form-field">
-            <label className="form-label" htmlFor="target_audience">
-              Who is it for? <span className="required">*</span>
-            </label>
-            <input
-              id="target_audience"
-              type="text"
-              className={`form-input${errors.target_audience ? ' error' : ''}`}
-              placeholder="e.g. Freelancers who invoice clients"
-              value={form.target_audience}
-              onChange={(e) => updateField('target_audience', e.target.value)}
-              onBlur={(e) => handleBlur('target_audience', e.target.value)}
-              autoComplete="off"
-              maxLength={300}
-              aria-describedby={errors.target_audience ? 'err-target_audience' : undefined}
-            />
-            {errors.target_audience && (
-              <span id="err-target_audience" className="form-error" role="alert">{errors.target_audience}</span>
-            )}
-          </div>
-
-          <div className="form-field">
-            <label className="form-label">
-              Monthly ad budget you&apos;re comfortable with <span className="required">*</span>
-            </label>
-            <div className="form-radio-group" role="radiogroup" aria-label="Monthly ad budget">
-              {BUDGET_OPTIONS.map((option) => (
-                <label key={option} className="form-radio-label">
-                  <input
-                    type="radio"
-                    name="monthly_budget"
-                    value={option}
-                    checked={form.monthly_budget === option}
-                    onChange={() => updateField('monthly_budget', option)}
-                  />
-                  {option}
-                </label>
-              ))}
-            </div>
-            {errors.monthly_budget && (
-              <span id="err-monthly_budget" className="form-error" role="alert">{errors.monthly_budget}</span>
-            )}
-          </div>
-
-          <div className="form-field">
-            <label className="form-label" htmlFor="email">
-              Your email <span className="required">*</span>
-            </label>
-            <input
-              id="email"
-              type="email"
-              className={`form-input${errors.email ? ' error' : ''}`}
-              placeholder="you@example.com"
-              value={form.email}
-              onChange={(e) => updateField('email', e.target.value)}
-              onBlur={(e) => handleBlur('email', e.target.value)}
-              autoComplete="email"
-              maxLength={254}
-              aria-describedby={errors.email ? 'err-email' : undefined}
-            />
-            {errors.email && <span id="err-email" className="form-error" role="alert">{errors.email}</span>}
-          </div>
-
-          {status === 'error' && globalError && (
-            <div className="form-global-error" role="alert">
-              <span>{globalError}</span>
-              <button
-                type="button"
-                className="form-error-retry"
-                onClick={() => { setStatus('idle'); setGlobalError('') }}
-              >
-                Try again
-              </button>
-            </div>
-          )}
-
-          <div className="form-submit-wrap">
-            <button
-              type="submit"
-              className="btn-primary"
-              disabled={status === 'loading'}
-              onClick={() => status !== 'loading' && trackEvent('cta_click')}
-            >
-              {status === 'loading' ? 'Submitting…' : 'Submit Your App'}
-            </button>
-            <span className="form-submit-note">
-              We review every submission personally and reach out when we&apos;re ready to onboard your app.
-            </span>
-          </div>
-        </form>
-      )}
-    </div>
-  )
-}
-
-// ── Page ──────────────────────────────────────────────────────────────────
 export default function HomePage() {
-  const sessionRegistered = useRef(false)
-
-  // Register session on mount
-  useEffect(() => {
-    if (sessionRegistered.current) return
-    sessionRegistered.current = true
-    registerSession()
-  }, [])
-
-  // Scroll-reveal via IntersectionObserver
-  useEffect(() => {
-    const els = document.querySelectorAll('.reveal')
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.12 }
-    )
-    els.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <>
+      <PageEffects />
+
       {/* ── Nav ── */}
       <nav className="nav">
         <div className="container nav-inner">
-          <a href="/" className="nav-logo nav-logo-badge" aria-label="HoopoeApps">
-            HoopoeApps
+          <a href="/" className="nav-logo" aria-label="HoopoeApps">
+            <Image
+              src="/logo.svg"
+              alt="HoopoeApps"
+              width={160}
+              height={40}
+              priority
+            />
           </a>
-          <a
-            href="#apply"
-            className="btn-nav"
-            onClick={() => trackEvent('cta_click')}
-          >
-            Submit Your App →
-          </a>
+          <CTAButton href="#apply" className="btn-nav">Submit Your App →</CTAButton>
         </div>
       </nav>
 
@@ -474,13 +40,7 @@ export default function HomePage() {
                 You fund the spend. We handle everything else — free.
               </p>
               <div className="hero-cta-group hero-anim hero-anim-4">
-                <a
-                  href="#apply"
-                  className="btn-primary"
-                  onClick={() => trackEvent('cta_click')}
-                >
-                  Submit Your App →
-                </a>
+                <CTAButton href="#apply" className="btn-primary">Submit Your App →</CTAButton>
                 <span className="hero-note">
                   We review every submission personally.
                 </span>
@@ -505,15 +65,7 @@ export default function HomePage() {
                   Use any vibe coding tool to bring your idea to life. Don&apos;t have an app yet?
                   We recommend Base44 — you can go from idea to live app in a weekend.
                 </p>
-                <a
-                  href={BASE44_AFFILIATE_URL}
-                  className="step-link"
-                  target="_blank"
-                  rel="noopener noreferrer sponsored"
-                  onClick={() => trackEvent('affiliate_link_click', { destination: 'base44' })}
-                >
-                  Start building on Base44 →
-                </a>
+                <AffiliateLink />
               </div>
 
               <div className="step">
@@ -542,7 +94,7 @@ export default function HomePage() {
           <div className="container">
             <div className="reveal">
               <span className="section-label">What you get</span>
-              <h2>Everything done — nothing to figure out</h2>
+              <h2>Free Google and Meta ad management — everything included</h2>
             </div>
 
             <div className="included-grid reveal">
@@ -628,7 +180,9 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <ApplyForm />
+              <div className="reveal">
+                <ApplyForm />
+              </div>
             </div>
           </div>
         </section>
@@ -642,7 +196,6 @@ export default function HomePage() {
               HoopoeApps
             </a>
             <nav className="footer-links" aria-label="Footer navigation">
-              {/* TODO: Add real privacy policy and terms pages */}
               <a href="/privacy">Privacy Policy</a>
               <a href="/terms">Terms</a>
               <a href="mailto:hello@hoopoeapps.com">Contact</a>
