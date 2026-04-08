@@ -1,7 +1,15 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import { Manrope } from 'next/font/google'
 import { CookieConsentBanner } from './components/CookieConsentBanner'
 import './globals.css'
+
+const manrope = Manrope({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-manrope',
+  display: 'swap',
+})
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
 const HOTJAR_ID = process.env.NEXT_PUBLIC_HOTJAR_ID || ''
@@ -27,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={manrope.variable}>
       <head>
         {/* Google Consent Mode — init BEFORE GTM */}
         {GTM_ID && (
@@ -76,6 +84,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
       </head>
       <body>
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+
         {GTM_ID && (
           <noscript>
             <iframe

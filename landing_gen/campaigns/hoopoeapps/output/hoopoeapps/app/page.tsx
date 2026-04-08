@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 // ── Config ──────────────────────────────────────────────────────────────
 const COLLECTOR_URL = process.env.NEXT_PUBLIC_COLLECTOR_URL || ''
@@ -181,17 +182,42 @@ export default function HomePage() {
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: '' }))
   }
 
+  function validateField(field: keyof AppForm, value: string): string {
+    switch (field) {
+      case 'app_name': return value.trim() ? '' : 'App name is required.'
+      case 'app_url':
+        if (!value.trim()) return 'App URL is required.'
+        if (!/^https?:\/\/.+/.test(value.trim())) return 'Enter a valid URL (starting with http:// or https://).'
+        return ''
+      case 'app_description': return value.trim() ? '' : 'Please describe your app.'
+      case 'target_audience': return value.trim() ? '' : 'Please describe your target audience.'
+      case 'monthly_budget': return value ? '' : 'Please select a budget range.'
+      case 'email':
+        if (!value.trim()) return 'Email is required.'
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) return 'Please enter a valid email address.'
+        return ''
+      default: return ''
+    }
+  }
+
+  function handleBlur(field: keyof AppForm, value: string) {
+    const err = validateField(field, value)
+    setErrors((prev) => ({ ...prev, [field]: err }))
+  }
+
   function validate(): boolean {
     const newErrors: Partial<AppForm> = {}
-    if (!form.app_name.trim()) newErrors.app_name = 'App name is required.'
-    if (!form.app_url.trim()) newErrors.app_url = 'App URL is required.'
-    else if (!/^https?:\/\/.+/.test(form.app_url.trim())) newErrors.app_url = 'Enter a valid URL (starting with http:// or https://).'
-    if (!form.app_description.trim()) newErrors.app_description = 'Please describe your app.'
-    if (!form.target_audience.trim()) newErrors.target_audience = 'Please describe your target audience.'
-    if (!form.monthly_budget) newErrors.monthly_budget = 'Please select a budget range.'
-    if (!form.email.trim()) newErrors.email = 'Email is required.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) newErrors.email = 'Please enter a valid email address.'
+    const fields: (keyof AppForm)[] = ['app_name', 'app_url', 'app_description', 'target_audience', 'monthly_budget', 'email']
+    fields.forEach((f) => {
+      const err = validateField(f, form[f])
+      if (err) newErrors[f] = err
+    })
     setErrors(newErrors)
+    // Auto-focus first invalid field
+    const firstKey = Object.keys(newErrors)[0] as keyof AppForm | undefined
+    if (firstKey && firstKey !== 'monthly_budget') {
+      document.getElementById(firstKey)?.focus()
+    }
     return Object.keys(newErrors).length === 0
   }
 
@@ -246,7 +272,7 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <main>
+      <main id="main-content">
         {/* ── Hero ── */}
         <section className="hero">
           <div className="container">
@@ -368,10 +394,13 @@ export default function HomePage() {
           <div className="container">
             <div className="team-layout reveal">
               <div className="team-photo-wrap">
-                <img
+                <Image
                   src="/images/team.jpg"
                   alt="Ofek and Dan, founders of HoopoeApps"
+                  width={1200}
+                  height={999}
                   className="team-photo"
+                  loading="lazy"
                 />
               </div>
               <div className="team-content">
@@ -437,9 +466,11 @@ export default function HomePage() {
                         placeholder="e.g. TaskFlow"
                         value={form.app_name}
                         onChange={(e) => updateField('app_name', e.target.value)}
+                        onBlur={(e) => handleBlur('app_name', e.target.value)}
                         autoComplete="off"
+                        aria-describedby={errors.app_name ? 'err-app_name' : undefined}
                       />
-                      {errors.app_name && <span className="form-error">{errors.app_name}</span>}
+                      {errors.app_name && <span id="err-app_name" className="form-error" role="alert">{errors.app_name}</span>}
                     </div>
 
                     <div className="form-field">
@@ -453,9 +484,11 @@ export default function HomePage() {
                         placeholder="https://yourapp.com"
                         value={form.app_url}
                         onChange={(e) => updateField('app_url', e.target.value)}
+                        onBlur={(e) => handleBlur('app_url', e.target.value)}
                         autoComplete="url"
+                        aria-describedby={errors.app_url ? 'err-app_url' : undefined}
                       />
-                      {errors.app_url && <span className="form-error">{errors.app_url}</span>}
+                      {errors.app_url && <span id="err-app_url" className="form-error" role="alert">{errors.app_url}</span>}
                     </div>
 
                     <div className="form-field">
@@ -468,10 +501,12 @@ export default function HomePage() {
                         placeholder="2–3 sentences. What problem does it solve, and how?"
                         value={form.app_description}
                         onChange={(e) => updateField('app_description', e.target.value)}
+                        onBlur={(e) => handleBlur('app_description', e.target.value)}
                         rows={3}
+                        aria-describedby={errors.app_description ? 'err-app_description' : undefined}
                       />
                       {errors.app_description && (
-                        <span className="form-error">{errors.app_description}</span>
+                        <span id="err-app_description" className="form-error" role="alert">{errors.app_description}</span>
                       )}
                     </div>
 
@@ -486,10 +521,12 @@ export default function HomePage() {
                         placeholder="e.g. Freelancers who invoice clients"
                         value={form.target_audience}
                         onChange={(e) => updateField('target_audience', e.target.value)}
+                        onBlur={(e) => handleBlur('target_audience', e.target.value)}
                         autoComplete="off"
+                        aria-describedby={errors.target_audience ? 'err-target_audience' : undefined}
                       />
                       {errors.target_audience && (
-                        <span className="form-error">{errors.target_audience}</span>
+                        <span id="err-target_audience" className="form-error" role="alert">{errors.target_audience}</span>
                       )}
                     </div>
 
@@ -512,7 +549,7 @@ export default function HomePage() {
                         ))}
                       </div>
                       {errors.monthly_budget && (
-                        <span className="form-error">{errors.monthly_budget}</span>
+                        <span className="form-error" role="alert">{errors.monthly_budget}</span>
                       )}
                     </div>
 
@@ -527,13 +564,24 @@ export default function HomePage() {
                         placeholder="you@example.com"
                         value={form.email}
                         onChange={(e) => updateField('email', e.target.value)}
+                        onBlur={(e) => handleBlur('email', e.target.value)}
                         autoComplete="email"
+                        aria-describedby={errors.email ? 'err-email' : undefined}
                       />
-                      {errors.email && <span className="form-error">{errors.email}</span>}
+                      {errors.email && <span id="err-email" className="form-error" role="alert">{errors.email}</span>}
                     </div>
 
                     {status === 'error' && globalError && (
-                      <p className="form-global-error">{globalError}</p>
+                      <div className="form-global-error" role="alert">
+                        <span>{globalError}</span>
+                        <button
+                          type="button"
+                          className="form-error-retry"
+                          onClick={() => { setStatus('idle'); setGlobalError('') }}
+                        >
+                          Try again
+                        </button>
+                      </div>
                     )}
 
                     <div className="form-submit-wrap">
