@@ -13,14 +13,8 @@ export default function HomePage() {
       {/* ── Nav ── */}
       <nav className="nav">
         <div className="container nav-inner">
-          <a href="/" className="nav-logo" aria-label="HoopoeApps">
-            <Image
-              src="/logo.svg"
-              alt="HoopoeApps"
-              width={160}
-              height={40}
-              priority
-            />
+          <a href="/" className="nav-logo nav-logo-badge" aria-label="HoopoeApps">
+            HoopoeApps
           </a>
           <CTAButton href="#apply" className="btn-nav">Submit Your App →</CTAButton>
         </div>
