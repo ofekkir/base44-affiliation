@@ -277,16 +277,16 @@ export default function HomePage() {
         <section className="hero">
           <div className="container">
             <div className="hero-inner">
-              <span className="section-label">Free ad management for builders</span>
-              <h1 className="hero-headline">
+              <span className="section-label hero-anim hero-anim-1">Free ad management for builders</span>
+              <h1 className="hero-headline hero-anim hero-anim-2">
                 Built a vibe-coded app?<br />
                 We&apos;ll run your ads <em>for free.</em>
               </h1>
-              <p className="hero-subheadline">
+              <p className="hero-subheadline hero-anim hero-anim-3">
                 We set up and manage your Google and Meta ad campaigns.
                 You fund the spend. We handle everything else — free.
               </p>
-              <div className="hero-cta-group">
+              <div className="hero-cta-group hero-anim hero-anim-4">
                 <a
                   href="#apply"
                   className="btn-primary"
@@ -301,8 +301,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        <hr className="section-divider" />
 
         {/* ── How It Works ── */}
         <section className="how">
@@ -357,7 +355,7 @@ export default function HomePage() {
           <div className="container">
             <div className="reveal">
               <span className="section-label">What you get</span>
-              <h2 style={{ marginBottom: '2.5rem' }}>Everything done — nothing to figure out</h2>
+              <h2>Everything done — nothing to figure out</h2>
             </div>
 
             <div className="included-grid reveal">
@@ -446,7 +444,12 @@ export default function HomePage() {
               <div className="reveal">
                 {status === 'success' ? (
                   <div className="form-success">
-                    <div className="form-success-icon" aria-hidden="true">✓</div>
+                    <div className="form-success-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+                        <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="1.5"/>
+                        <path d="M7 12.5l3.5 3.5 6.5-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                     <h3>We&apos;ve received your app.</h3>
                     <p>
                       We&apos;ll review it and be in touch. In the meantime, if you haven&apos;t launched yet,

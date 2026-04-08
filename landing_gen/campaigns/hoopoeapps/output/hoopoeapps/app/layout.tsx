@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
-import { Manrope } from 'next/font/google'
+import { Manrope, Fraunces } from 'next/font/google'
 import { CookieConsentBanner } from './components/CookieConsentBanner'
 import './globals.css'
 
@@ -8,6 +8,15 @@ const manrope = Manrope({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-manrope',
+  display: 'swap',
+})
+
+// Distinctive serif display font — paired with Manrope for h1/h2 only
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  weight: ['700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-fraunces',
   display: 'swap',
 })
 
@@ -35,7 +44,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={manrope.variable}>
+    <html lang="en" className={`${manrope.variable} ${fraunces.variable}`}>
       <head>
         {/* Google Consent Mode — init BEFORE GTM */}
         {GTM_ID && (
