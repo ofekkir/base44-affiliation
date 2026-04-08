@@ -261,9 +261,32 @@ export default function HomePage() {
         <div className="container nav-inner">
           <a href="/" className="nav-logo" aria-label="HoopoeApps">
             <span className="nav-logo-mark" aria-hidden="true">
-              {/* Hoopoe bird silhouette — simple crest shape */}
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M8 2C6 2 4.5 3 4 4.5 3.2 4.2 2.5 4.5 2 5.5c.8-.2 1.5 0 2 .5C3.5 7 3 8.5 3 10c0 2 1.5 3.5 3.5 3.5h3C11.5 13.5 13 12 13 10c0-1.5-.5-3-1.5-4 .8-.2 1.5-.1 2 .2C13 5 11.5 3.5 10 3.5 9.5 2.5 8.8 2 8 2z" />
+              <svg viewBox="0 0 96 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g transform="translate(96,0) scale(-1,1)">
+                  <g fill="#E8A020">
+                    <path transform="rotate(-40,39,21)" d="M39,21 C41.5,16 42,11 39,7 C36,11 36.5,16 39,21Z"/>
+                    <path transform="rotate(-20,39,21)" d="M39,21 C41.5,16 42,11 39,7 C36,11 36.5,16 39,21Z"/>
+                    <path d="M39,21 C41.5,16 42,11 39,7 C36,11 36.5,16 39,21Z"/>
+                    <path transform="rotate(20,39,21)" d="M39,21 C41.5,16 42,11 39,7 C36,11 36.5,16 39,21Z"/>
+                    <path transform="rotate(40,39,21)" d="M39,21 C41.5,16 42,11 39,7 C36,11 36.5,16 39,21Z"/>
+                  </g>
+                  <g fill="#1A1512">
+                    <path transform="rotate(-40,39,21)" d="M39,7 C40.5,5 41,3 39,2 C37,3 37.5,5 39,7Z"/>
+                    <path transform="rotate(-20,39,21)" d="M39,7 C40.5,5 41,3 39,2 C37,3 37.5,5 39,7Z"/>
+                    <path d="M39,7 C40.5,5 41,3 39,2 C37,3 37.5,5 39,7Z"/>
+                    <path transform="rotate(20,39,21)" d="M39,7 C40.5,5 41,3 39,2 C37,3 37.5,5 39,7Z"/>
+                    <path transform="rotate(40,39,21)" d="M39,7 C40.5,5 41,3 39,2 C37,3 37.5,5 39,7Z"/>
+                  </g>
+                  <path fill="#C04419" d="M80,52 C86,46 92,47 93,53 C92,58 86,60 80,56Z"/>
+                  <path fill="#D9541E" d="M50,35 C56,25 74,24 84,32 C92,38 92,54 84,58 C74,62 56,61 50,55 C44,51 44,43 50,35Z"/>
+                  <circle fill="#D9541E" cx="41" cy="33" r="12"/>
+                  <path fill="#7A3A18" d="M30,30 C18,32 8,39 4,43 C8,42 18,37 30,34Z"/>
+                  <path fill="#1A1512" d="M60,38 C68,34 78,34 86,38 L84,42 C75,40 66,40 58,42Z"/>
+                  <path fill="#F2EFE8" d="M58,42 C67,39 78,40 86,44 L84,48 C74,46 66,46 56,47Z"/>
+                  <path fill="#1A1512" d="M56,47 C65,44 77,45 85,50 L83,54 C73,51 64,52 54,53Z"/>
+                  <circle fill="#1A1512" cx="37" cy="29" r="2.5"/>
+                  <circle fill="white" cx="36.3" cy="28.3" r="0.8"/>
+                </g>
               </svg>
             </span>
             <span className="nav-logo-text">HoopoeApps</span>

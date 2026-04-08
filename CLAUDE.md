@@ -17,6 +17,9 @@
 ├── /plans
 │   └── hoopoeapps-landing-page-plan.md  ← HoopoeApps landing page spec
 ├── /context   ← spun out when 3+ related session learnings accumulate
+├── /logo_work
+│   ├── hoopoeapps-logo.svg  ← standalone hoopoe bird SVG logomark
+│   └── hoopoe-preview.html  ← logo preview page (dev artifact)
 └── /landing_gen/campaigns/hoopoeapps/output/hoopoeapps/  ← generated Next.js landing page
 ```
 
