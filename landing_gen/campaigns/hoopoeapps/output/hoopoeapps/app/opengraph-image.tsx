@@ -26,7 +26,7 @@ export default function OgImage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: '#D9541E',
+            background: '#1A1512',
             borderRadius: '16px',
             padding: '18px 48px',
             marginBottom: '48px',
