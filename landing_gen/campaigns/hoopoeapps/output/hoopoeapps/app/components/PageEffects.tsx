@@ -1,17 +1,8 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { registerSession } from '../../lib/analytics'
+import { useEffect } from 'react'
 
 export function PageEffects() {
-  const sessionRegistered = useRef(false)
-
-  useEffect(() => {
-    if (sessionRegistered.current) return
-    sessionRegistered.current = true
-    registerSession()
-  }, [])
-
   useEffect(() => {
     const els = document.querySelectorAll('.reveal')
     const observer = new IntersectionObserver(
