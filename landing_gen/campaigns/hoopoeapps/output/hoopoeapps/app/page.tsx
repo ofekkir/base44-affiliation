@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 // ── Config ──────────────────────────────────────────────────────────────
 const COLLECTOR_URL = process.env.NEXT_PUBLIC_COLLECTOR_URL || ''
@@ -143,38 +144,6 @@ const EMPTY_FORM: AppForm = {
 
 const BUDGET_OPTIONS = ['$50–150', '$150–500', '$500+', 'Not sure yet']
 
-// ── TeamCard ──────────────────────────────────────────────────────────────
-function TeamCard({ name, initial, photo, linkedin }: {
-  name: string
-  initial: string
-  photo: string
-  linkedin: string
-}) {
-  const [imgFailed, setImgFailed] = useState(false)
-  return (
-    <div className="team-card">
-      <div className="team-avatar" aria-hidden="true">
-        {!imgFailed ? (
-          <img
-            src={photo}
-            alt={name}
-            className="team-avatar-img"
-            onError={() => setImgFailed(true)}
-          />
-        ) : (
-          initial
-        )}
-      </div>
-      <div className="team-info">
-        <span className="team-name">{name}</span>
-        <a href={linkedin} className="team-linkedin" target="_blank" rel="noopener noreferrer">
-          LinkedIn →
-        </a>
-      </div>
-    </div>
-  )
-}
-
 // ── Page ──────────────────────────────────────────────────────────────────
 export default function HomePage() {
   const [form, setForm] = useState<AppForm>(EMPTY_FORM)
@@ -213,17 +182,42 @@ export default function HomePage() {
     if (errors[field]) setErrors((prev) => ({ ...prev, [field]: '' }))
   }
 
+  function validateField(field: keyof AppForm, value: string): string {
+    switch (field) {
+      case 'app_name': return value.trim() ? '' : 'App name is required.'
+      case 'app_url':
+        if (!value.trim()) return 'App URL is required.'
+        if (!/^https?:\/\/.+/.test(value.trim())) return 'Enter a valid URL (starting with http:// or https://).'
+        return ''
+      case 'app_description': return value.trim() ? '' : 'Please describe your app.'
+      case 'target_audience': return value.trim() ? '' : 'Please describe your target audience.'
+      case 'monthly_budget': return value ? '' : 'Please select a budget range.'
+      case 'email':
+        if (!value.trim()) return 'Email is required.'
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) return 'Please enter a valid email address.'
+        return ''
+      default: return ''
+    }
+  }
+
+  function handleBlur(field: keyof AppForm, value: string) {
+    const err = validateField(field, value)
+    setErrors((prev) => ({ ...prev, [field]: err }))
+  }
+
   function validate(): boolean {
     const newErrors: Partial<AppForm> = {}
-    if (!form.app_name.trim()) newErrors.app_name = 'App name is required.'
-    if (!form.app_url.trim()) newErrors.app_url = 'App URL is required.'
-    else if (!/^https?:\/\/.+/.test(form.app_url.trim())) newErrors.app_url = 'Enter a valid URL (starting with http:// or https://).'
-    if (!form.app_description.trim()) newErrors.app_description = 'Please describe your app.'
-    if (!form.target_audience.trim()) newErrors.target_audience = 'Please describe your target audience.'
-    if (!form.monthly_budget) newErrors.monthly_budget = 'Please select a budget range.'
-    if (!form.email.trim()) newErrors.email = 'Email is required.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) newErrors.email = 'Please enter a valid email address.'
+    const fields: (keyof AppForm)[] = ['app_name', 'app_url', 'app_description', 'target_audience', 'monthly_budget', 'email']
+    fields.forEach((f) => {
+      const err = validateField(f, form[f])
+      if (err) newErrors[f] = err
+    })
     setErrors(newErrors)
+    // Auto-focus first invalid field
+    const firstKey = Object.keys(newErrors)[0] as keyof AppForm | undefined
+    if (firstKey && firstKey !== 'monthly_budget') {
+      document.getElementById(firstKey)?.focus()
+    }
     return Object.keys(newErrors).length === 0
   }
 
@@ -278,21 +272,21 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <main>
+      <main id="main-content">
         {/* ── Hero ── */}
         <section className="hero">
           <div className="container">
             <div className="hero-inner">
-              <span className="section-label">Free ad management for builders</span>
-              <h1 className="hero-headline">
+              <span className="section-label hero-anim hero-anim-1">Free ad management for builders</span>
+              <h1 className="hero-headline hero-anim hero-anim-2">
                 Built a vibe-coded app?<br />
                 We&apos;ll run your ads <em>for free.</em>
               </h1>
-              <p className="hero-subheadline">
-                We set up and manage your Google and Meta campaigns — professionally.
-                You fund the ads. We do the work, at no charge.
+              <p className="hero-subheadline hero-anim hero-anim-3">
+                We set up and manage your Google and Meta ad campaigns.
+                You fund the spend. We handle everything else — free.
               </p>
-              <div className="hero-cta-group">
+              <div className="hero-cta-group hero-anim hero-anim-4">
                 <a
                   href="#apply"
                   className="btn-primary"
@@ -301,14 +295,12 @@ export default function HomePage() {
                   Submit Your App →
                 </a>
                 <span className="hero-note">
-                  We review every submission and reach out when we&apos;re ready to onboard your app.
+                  We review every submission personally.
                 </span>
               </div>
             </div>
           </div>
         </section>
-
-        <hr className="section-divider" />
 
         {/* ── How It Works ── */}
         <section className="how">
@@ -324,7 +316,7 @@ export default function HomePage() {
                 <h3 className="step-title">Build your app</h3>
                 <p className="step-body">
                   Use any vibe coding tool to bring your idea to life. Don&apos;t have an app yet?
-                  We recommend Base44 — it&apos;s one of the fastest ways to go from idea to live product.
+                  We recommend Base44 — you can go from idea to live app in a weekend.
                 </p>
                 <a
                   href={BASE44_AFFILIATE_URL}
@@ -363,7 +355,7 @@ export default function HomePage() {
           <div className="container">
             <div className="reveal">
               <span className="section-label">What you get</span>
-              <h2 style={{ marginBottom: '2.5rem' }}>Everything done — nothing to figure out</h2>
+              <h2>Everything done — nothing to figure out</h2>
             </div>
 
             <div className="included-grid reveal">
@@ -398,31 +390,34 @@ export default function HomePage() {
         {/* ── Who We Are ── */}
         <section className="team">
           <div className="container">
-            <div className="team-header reveal">
-              <span className="section-label">Why we&apos;re doing this</span>
-              <h2>The people behind HoopoeApps</h2>
-            </div>
-
-            <p className="team-bio-text reveal">
-              We&apos;re Ofek and Dan — engineers and builders from Tel Aviv. Ofek builds at monday.com
-              and has shipped across engineering and product. Dan was named Forbes 30 Under 30 for his
-              work in AI and data science. We started HoopoeApps because too many well-built apps never
-              find their audience. We&apos;re changing that, one app at a time.
-            </p>
-
-            <div className="team-cards reveal">
-              <TeamCard
-                name="Ofek Kirzner"
-                initial="O"
-                photo="/images/ofek.jpg"
-                linkedin="https://www.linkedin.com/in/ofekkirzner/"
-              />
-              <TeamCard
-                name="Dan Riesel"
-                initial="D"
-                photo="/images/dan.jpg"
-                linkedin="https://www.linkedin.com/in/danriesel/"
-              />
+            <div className="team-layout reveal">
+              <div className="team-photo-wrap">
+                <Image
+                  src="/images/team.jpg"
+                  alt="Ofek and Dan, founders of HoopoeApps"
+                  width={1200}
+                  height={999}
+                  className="team-photo"
+                  loading="lazy"
+                />
+              </div>
+              <div className="team-content">
+                <span className="section-label">Why we&apos;re doing this</span>
+                <h2>Two builders on a mission</h2>
+                <p className="team-bio-text">
+                  We&apos;re Ofek and Dan — both Forbes 30 Under 30, both builders who&apos;ve shipped
+                  products at scale. We&apos;ve seen too many well-crafted apps stay invisible simply
+                  because their makers didn&apos;t know how to run ads. We started HoopoeApps to fix that.
+                </p>
+                <div className="team-links">
+                  <a href="https://www.linkedin.com/in/ofekkirzner/" className="team-linkedin-link" target="_blank" rel="noopener noreferrer">
+                    Ofek Kirzner →
+                  </a>
+                  <a href="https://www.linkedin.com/in/danriesel/" className="team-linkedin-link" target="_blank" rel="noopener noreferrer">
+                    Dan Riesel →
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -432,7 +427,7 @@ export default function HomePage() {
           <div className="container">
             <div className="apply-layout">
               <div className="apply-sidebar reveal">
-                <span className="section-label">Apply</span>
+                <span className="section-label">Ready to grow?</span>
                 <h2>Get your app in front of the right audience</h2>
                 <p>
                   Tell us about your app and what you&apos;re trying to achieve. We review every submission
@@ -449,7 +444,12 @@ export default function HomePage() {
               <div className="reveal">
                 {status === 'success' ? (
                   <div className="form-success">
-                    <div className="form-success-icon" aria-hidden="true">✓</div>
+                    <div className="form-success-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="32" height="32">
+                        <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="1.5"/>
+                        <path d="M7 12.5l3.5 3.5 6.5-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                     <h3>We&apos;ve received your app.</h3>
                     <p>
                       We&apos;ll review it and be in touch. In the meantime, if you haven&apos;t launched yet,
@@ -469,9 +469,11 @@ export default function HomePage() {
                         placeholder="e.g. TaskFlow"
                         value={form.app_name}
                         onChange={(e) => updateField('app_name', e.target.value)}
+                        onBlur={(e) => handleBlur('app_name', e.target.value)}
                         autoComplete="off"
+                        aria-describedby={errors.app_name ? 'err-app_name' : undefined}
                       />
-                      {errors.app_name && <span className="form-error">{errors.app_name}</span>}
+                      {errors.app_name && <span id="err-app_name" className="form-error" role="alert">{errors.app_name}</span>}
                     </div>
 
                     <div className="form-field">
@@ -485,9 +487,11 @@ export default function HomePage() {
                         placeholder="https://yourapp.com"
                         value={form.app_url}
                         onChange={(e) => updateField('app_url', e.target.value)}
+                        onBlur={(e) => handleBlur('app_url', e.target.value)}
                         autoComplete="url"
+                        aria-describedby={errors.app_url ? 'err-app_url' : undefined}
                       />
-                      {errors.app_url && <span className="form-error">{errors.app_url}</span>}
+                      {errors.app_url && <span id="err-app_url" className="form-error" role="alert">{errors.app_url}</span>}
                     </div>
 
                     <div className="form-field">
@@ -500,10 +504,12 @@ export default function HomePage() {
                         placeholder="2–3 sentences. What problem does it solve, and how?"
                         value={form.app_description}
                         onChange={(e) => updateField('app_description', e.target.value)}
+                        onBlur={(e) => handleBlur('app_description', e.target.value)}
                         rows={3}
+                        aria-describedby={errors.app_description ? 'err-app_description' : undefined}
                       />
                       {errors.app_description && (
-                        <span className="form-error">{errors.app_description}</span>
+                        <span id="err-app_description" className="form-error" role="alert">{errors.app_description}</span>
                       )}
                     </div>
 
@@ -518,10 +524,12 @@ export default function HomePage() {
                         placeholder="e.g. Freelancers who invoice clients"
                         value={form.target_audience}
                         onChange={(e) => updateField('target_audience', e.target.value)}
+                        onBlur={(e) => handleBlur('target_audience', e.target.value)}
                         autoComplete="off"
+                        aria-describedby={errors.target_audience ? 'err-target_audience' : undefined}
                       />
                       {errors.target_audience && (
-                        <span className="form-error">{errors.target_audience}</span>
+                        <span id="err-target_audience" className="form-error" role="alert">{errors.target_audience}</span>
                       )}
                     </div>
 
@@ -544,7 +552,7 @@ export default function HomePage() {
                         ))}
                       </div>
                       {errors.monthly_budget && (
-                        <span className="form-error">{errors.monthly_budget}</span>
+                        <span className="form-error" role="alert">{errors.monthly_budget}</span>
                       )}
                     </div>
 
@@ -559,13 +567,24 @@ export default function HomePage() {
                         placeholder="you@example.com"
                         value={form.email}
                         onChange={(e) => updateField('email', e.target.value)}
+                        onBlur={(e) => handleBlur('email', e.target.value)}
                         autoComplete="email"
+                        aria-describedby={errors.email ? 'err-email' : undefined}
                       />
-                      {errors.email && <span className="form-error">{errors.email}</span>}
+                      {errors.email && <span id="err-email" className="form-error" role="alert">{errors.email}</span>}
                     </div>
 
                     {status === 'error' && globalError && (
-                      <p className="form-global-error">{globalError}</p>
+                      <div className="form-global-error" role="alert">
+                        <span>{globalError}</span>
+                        <button
+                          type="button"
+                          className="form-error-retry"
+                          onClick={() => { setStatus('idle'); setGlobalError('') }}
+                        >
+                          Try again
+                        </button>
+                      </div>
                     )}
 
                     <div className="form-submit-wrap">
