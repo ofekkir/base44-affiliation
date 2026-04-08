@@ -35,22 +35,11 @@ export const metadata: Metadata = {
     url: 'https://hoopoeapps.com',
     siteName: 'HoopoeApps',
     type: 'website',
-    // Create public/og-image.jpg (1200×630) to enable social preview images
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'HoopoeApps — Free ad management for app builders',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Free Ad Management for App Builders | HoopoeApps',
     description: 'Free Google and Meta ad management for app builders. You set the budget. We handle everything else.',
-    // Create public/og-image.jpg (1200×630) to enable Twitter card preview
-    images: ['/og-image.jpg'],
   },
 }
 

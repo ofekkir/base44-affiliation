@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { CTAButton } from './components/CTAButton'
+
 import { AffiliateLink } from './components/AffiliateLink'
 import { ApplyForm } from './components/ApplyForm'
 import { PageEffects } from './components/PageEffects'
