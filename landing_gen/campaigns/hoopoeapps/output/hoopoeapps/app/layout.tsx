@@ -24,7 +24,7 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
 const HOTJAR_ID = process.env.NEXT_PUBLIC_HOTJAR_ID || ''
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hoopoeapps.com'),
+  metadataBase: new URL('https://hoopoeapps.vercel.app'),
   title: 'Free Ad Management for App Builders | HoopoeApps',
   description:
     'Built a vibe-coded app? We set up and manage your Google and Meta ad campaigns professionally, at no charge. You fund the ads. We do the work.',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'Free Ad Management for App Builders | HoopoeApps',
     description:
       'We set up and manage your Google and Meta campaigns — professionally. You fund the ads. We do the work, at no charge.',
-    url: 'https://hoopoeapps.com',
+    url: 'https://hoopoeapps.vercel.app',
     siteName: 'HoopoeApps',
     type: 'website',
   },
