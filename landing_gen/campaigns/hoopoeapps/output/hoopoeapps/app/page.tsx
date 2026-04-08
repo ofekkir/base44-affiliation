@@ -446,14 +446,8 @@ export default function HomePage() {
       {/* ── Nav ── */}
       <nav className="nav">
         <div className="container nav-inner">
-          <a href="/" className="nav-logo" aria-label="HoopoeApps">
-            <span className="nav-logo-mark" aria-hidden="true">
-              {/* Hoopoe bird silhouette — simple crest shape */}
-              <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M8 2C6 2 4.5 3 4 4.5 3.2 4.2 2.5 4.5 2 5.5c.8-.2 1.5 0 2 .5C3.5 7 3 8.5 3 10c0 2 1.5 3.5 3.5 3.5h3C11.5 13.5 13 12 13 10c0-1.5-.5-3-1.5-4 .8-.2 1.5-.1 2 .2C13 5 11.5 3.5 10 3.5 9.5 2.5 8.8 2 8 2z" />
-              </svg>
-            </span>
-            <span className="nav-logo-text">HoopoeApps</span>
+          <a href="/" className="nav-logo nav-logo-badge" aria-label="HoopoeApps">
+            HoopoeApps
           </a>
           <a
             href="#apply"
@@ -644,7 +638,7 @@ export default function HomePage() {
       <footer className="footer">
         <div className="container">
           <div className="footer-top">
-            <a href="/" className="footer-logo" aria-label="HoopoeApps">
+            <a href="/" className="footer-logo nav-logo-badge nav-logo-badge--sm" aria-label="HoopoeApps">
               HoopoeApps
             </a>
             <nav className="footer-links" aria-label="Footer navigation">
