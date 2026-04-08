@@ -143,6 +143,38 @@ const EMPTY_FORM: AppForm = {
 
 const BUDGET_OPTIONS = ['$50–150', '$150–500', '$500+', 'Not sure yet']
 
+// ── TeamCard ──────────────────────────────────────────────────────────────
+function TeamCard({ name, initial, photo, linkedin }: {
+  name: string
+  initial: string
+  photo: string
+  linkedin: string
+}) {
+  const [imgFailed, setImgFailed] = useState(false)
+  return (
+    <div className="team-card">
+      <div className="team-avatar" aria-hidden="true">
+        {!imgFailed ? (
+          <img
+            src={photo}
+            alt={name}
+            className="team-avatar-img"
+            onError={() => setImgFailed(true)}
+          />
+        ) : (
+          initial
+        )}
+      </div>
+      <div className="team-info">
+        <span className="team-name">{name}</span>
+        <a href={linkedin} className="team-linkedin" target="_blank" rel="noopener noreferrer">
+          LinkedIn →
+        </a>
+      </div>
+    </div>
+  )
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────
 export default function HomePage() {
   const [form, setForm] = useState<AppForm>(EMPTY_FORM)
@@ -372,31 +404,25 @@ export default function HomePage() {
             </div>
 
             <p className="team-bio-text reveal">
-              We&apos;re Ofek and Dan — builders with a background in paid acquisition and distribution.
-              We&apos;ve run campaigns across Google, Meta, and more. We started HoopoeApps because too many
-              well-built apps never find their audience. We&apos;re changing that, one app at a time.
+              We&apos;re Ofek and Dan — engineers and builders from Tel Aviv. Ofek builds at monday.com
+              and has shipped across engineering and product. Dan was named Forbes 30 Under 30 for his
+              work in AI and data science. We started HoopoeApps because too many well-built apps never
+              find their audience. We&apos;re changing that, one app at a time.
             </p>
 
             <div className="team-cards reveal">
-              <div className="team-card">
-                <div className="team-avatar" aria-hidden="true">O</div>
-                <div className="team-info">
-                  <span className="team-name">Ofek Kirzner</span>
-                  <a href="https://www.linkedin.com/in/ofekkirzner/" className="team-linkedin" target="_blank" rel="noopener noreferrer">
-                    LinkedIn →
-                  </a>
-                </div>
-              </div>
-
-              <div className="team-card">
-                <div className="team-avatar" aria-hidden="true">D</div>
-                <div className="team-info">
-                  <span className="team-name">Dan Riesel</span>
-                  <a href="https://www.linkedin.com/in/danriesel/" className="team-linkedin" target="_blank" rel="noopener noreferrer">
-                    LinkedIn →
-                  </a>
-                </div>
-              </div>
+              <TeamCard
+                name="Ofek Kirzner"
+                initial="O"
+                photo="/images/ofek.jpg"
+                linkedin="https://www.linkedin.com/in/ofekkirzner/"
+              />
+              <TeamCard
+                name="Dan Riesel"
+                initial="D"
+                photo="/images/dan.jpg"
+                linkedin="https://www.linkedin.com/in/danriesel/"
+              />
             </div>
           </div>
         </section>
