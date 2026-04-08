@@ -371,35 +371,28 @@ export default function HomePage() {
               <h2>The people behind HoopoeApps</h2>
             </div>
 
-            {/* TODO: Replace placeholder names, initials, and LinkedIn URLs below */}
             <p className="team-bio-text reveal">
-              We&apos;re [Name A] and [Name B] — builders with a background in paid acquisition and distribution.
+              We&apos;re Ofek and Dan — builders with a background in paid acquisition and distribution.
               We&apos;ve run campaigns across Google, Meta, and more. We started HoopoeApps because too many
               well-built apps never find their audience. We&apos;re changing that, one app at a time.
             </p>
 
             <div className="team-cards reveal">
               <div className="team-card">
-                {/* TODO: Replace with photo if available */}
-                <div className="team-avatar" aria-hidden="true">A</div>
+                <div className="team-avatar" aria-hidden="true">O</div>
                 <div className="team-info">
-                  {/* TODO: Replace [Name A] with real name */}
-                  <span className="team-name">[Name A]</span>
-                  {/* TODO: Replace # with real LinkedIn URL */}
-                  <a href="#" className="team-linkedin" target="_blank" rel="noopener noreferrer">
+                  <span className="team-name">Ofek Kirzner</span>
+                  <a href="https://www.linkedin.com/in/ofekkirzner/" className="team-linkedin" target="_blank" rel="noopener noreferrer">
                     LinkedIn →
                   </a>
                 </div>
               </div>
 
               <div className="team-card">
-                {/* TODO: Replace with photo if available */}
-                <div className="team-avatar" aria-hidden="true">B</div>
+                <div className="team-avatar" aria-hidden="true">D</div>
                 <div className="team-info">
-                  {/* TODO: Replace [Name B] with real name */}
-                  <span className="team-name">[Name B]</span>
-                  {/* TODO: Replace # with real LinkedIn URL */}
-                  <a href="#" className="team-linkedin" target="_blank" rel="noopener noreferrer">
+                  <span className="team-name">Dan Riesel</span>
+                  <a href="https://www.linkedin.com/in/danriesel/" className="team-linkedin" target="_blank" rel="noopener noreferrer">
                     LinkedIn →
                   </a>
                 </div>
