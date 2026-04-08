@@ -21,7 +21,6 @@ export default function OgImage() {
           padding: '80px',
         }}
       >
-        {/* Logo pill */}
         <div
           style={{
             display: 'flex',
@@ -45,32 +44,47 @@ export default function OgImage() {
           </span>
         </div>
 
-        {/* Headline */}
         <div
           style={{
-            fontSize: '56px',
-            fontWeight: 800,
-            color: '#FAFAF7',
-            textAlign: 'center',
-            lineHeight: 1.2,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             marginBottom: '24px',
           }}
         >
-          Free ad management
-          <br />
-          for app builders
+          <span
+            style={{
+              fontSize: '56px',
+              fontWeight: 800,
+              color: '#FAFAF7',
+              textAlign: 'center',
+              lineHeight: 1.2,
+            }}
+          >
+            Free ad management
+          </span>
+          <span
+            style={{
+              fontSize: '56px',
+              fontWeight: 800,
+              color: '#FAFAF7',
+              textAlign: 'center',
+              lineHeight: 1.2,
+            }}
+          >
+            for app builders
+          </span>
         </div>
 
-        {/* Subline */}
-        <div
+        <span
           style={{
             fontSize: '28px',
             color: '#a3a3a3',
             textAlign: 'center',
           }}
         >
-          Google &amp; Meta campaigns — professionally run, at no charge
-        </div>
+          Google & Meta campaigns — professionally run, at no charge
+        </span>
       </div>
     ),
     { ...size }
