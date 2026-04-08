@@ -14,8 +14,10 @@
 ```
 /
 ├── CLAUDE.md
-├── /plans     ← implementation plans, committed alongside code
-└── /context   ← spun out when 3+ related session learnings accumulate
+├── /plans
+│   └── hoopoeapps-landing-page-plan.md  ← HoopoeApps landing page spec
+├── /context   ← spun out when 3+ related session learnings accumulate
+└── /landing_gen/campaigns/hoopoeapps/output/hoopoeapps/  ← generated Next.js landing page
 ```
 
 ## Note-Taking
