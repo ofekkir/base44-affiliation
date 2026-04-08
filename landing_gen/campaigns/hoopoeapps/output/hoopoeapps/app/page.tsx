@@ -143,38 +143,6 @@ const EMPTY_FORM: AppForm = {
 
 const BUDGET_OPTIONS = ['$50–150', '$150–500', '$500+', 'Not sure yet']
 
-// ── TeamCard ──────────────────────────────────────────────────────────────
-function TeamCard({ name, initial, photo, linkedin }: {
-  name: string
-  initial: string
-  photo: string
-  linkedin: string
-}) {
-  const [imgFailed, setImgFailed] = useState(false)
-  return (
-    <div className="team-card">
-      <div className="team-avatar" aria-hidden="true">
-        {!imgFailed ? (
-          <img
-            src={photo}
-            alt={name}
-            className="team-avatar-img"
-            onError={() => setImgFailed(true)}
-          />
-        ) : (
-          initial
-        )}
-      </div>
-      <div className="team-info">
-        <span className="team-name">{name}</span>
-        <a href={linkedin} className="team-linkedin" target="_blank" rel="noopener noreferrer">
-          LinkedIn →
-        </a>
-      </div>
-    </div>
-  )
-}
-
 // ── Page ──────────────────────────────────────────────────────────────────
 export default function HomePage() {
   const [form, setForm] = useState<AppForm>(EMPTY_FORM)
@@ -398,31 +366,31 @@ export default function HomePage() {
         {/* ── Who We Are ── */}
         <section className="team">
           <div className="container">
-            <div className="team-header reveal">
-              <span className="section-label">Why we&apos;re doing this</span>
-              <h2>The people behind HoopoeApps</h2>
-            </div>
-
-            <p className="team-bio-text reveal">
-              We&apos;re Ofek and Dan — engineers and builders from Tel Aviv. Ofek works at monday.com,
-              where he&apos;s shipped products used by millions. Dan was named Forbes 30 Under 30 for his
-              work in AI and data science. We started HoopoeApps because too many well-built apps never
-              find their audience. That&apos;s what HoopoeApps is here for.
-            </p>
-
-            <div className="team-cards reveal">
-              <TeamCard
-                name="Ofek Kirzner"
-                initial="O"
-                photo="/images/ofek.jpg"
-                linkedin="https://www.linkedin.com/in/ofekkirzner/"
-              />
-              <TeamCard
-                name="Dan Riesel"
-                initial="D"
-                photo="/images/dan.jpg"
-                linkedin="https://www.linkedin.com/in/danriesel/"
-              />
+            <div className="team-layout reveal">
+              <div className="team-photo-wrap">
+                <img
+                  src="/images/team.jpg"
+                  alt="Ofek and Dan, founders of HoopoeApps"
+                  className="team-photo"
+                />
+              </div>
+              <div className="team-content">
+                <span className="section-label">Why we&apos;re doing this</span>
+                <h2>Two builders on a mission</h2>
+                <p className="team-bio-text">
+                  We&apos;re Ofek and Dan — both Forbes 30 Under 30, both builders who&apos;ve shipped
+                  products at scale. We&apos;ve seen too many well-crafted apps stay invisible simply
+                  because their makers didn&apos;t know how to run ads. We started HoopoeApps to fix that.
+                </p>
+                <div className="team-links">
+                  <a href="https://www.linkedin.com/in/ofekkirzner/" className="team-linkedin-link" target="_blank" rel="noopener noreferrer">
+                    Ofek Kirzner →
+                  </a>
+                  <a href="https://www.linkedin.com/in/danriesel/" className="team-linkedin-link" target="_blank" rel="noopener noreferrer">
+                    Dan Riesel →
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
