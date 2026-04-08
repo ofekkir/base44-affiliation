@@ -35,12 +35,14 @@ export default function OgImage() {
           <span
             style={{
               fontSize: '52px',
-              fontWeight: 900,
+              fontWeight: 800,
+              fontStyle: 'italic',
               color: '#FAFAF7',
-              letterSpacing: '3px',
+              letterSpacing: '0.01em',
+              fontFamily: 'Georgia, serif',
             }}
           >
-            HOOPOEAPPS
+            HoopoeApps
           </span>
         </div>
 
