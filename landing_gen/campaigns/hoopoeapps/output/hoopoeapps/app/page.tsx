@@ -289,8 +289,8 @@ export default function HomePage() {
                 We&apos;ll run your ads <em>for free.</em>
               </h1>
               <p className="hero-subheadline">
-                We set up and manage your Google and Meta campaigns — professionally.
-                You fund the ads. We do the work, at no charge.
+                We set up and manage your Google and Meta ad campaigns.
+                You fund the spend. We handle everything else — free.
               </p>
               <div className="hero-cta-group">
                 <a
@@ -301,7 +301,7 @@ export default function HomePage() {
                   Submit Your App →
                 </a>
                 <span className="hero-note">
-                  We review every submission and reach out when we&apos;re ready to onboard your app.
+                  We review every submission personally.
                 </span>
               </div>
             </div>
@@ -324,7 +324,7 @@ export default function HomePage() {
                 <h3 className="step-title">Build your app</h3>
                 <p className="step-body">
                   Use any vibe coding tool to bring your idea to life. Don&apos;t have an app yet?
-                  We recommend Base44 — it&apos;s one of the fastest ways to go from idea to live product.
+                  We recommend Base44 — you can go from idea to live app in a weekend.
                 </p>
                 <a
                   href={BASE44_AFFILIATE_URL}
@@ -404,10 +404,10 @@ export default function HomePage() {
             </div>
 
             <p className="team-bio-text reveal">
-              We&apos;re Ofek and Dan — engineers and builders from Tel Aviv. Ofek builds at monday.com
-              and has shipped across engineering and product. Dan was named Forbes 30 Under 30 for his
+              We&apos;re Ofek and Dan — engineers and builders from Tel Aviv. Ofek works at monday.com,
+              where he&apos;s shipped products used by millions. Dan was named Forbes 30 Under 30 for his
               work in AI and data science. We started HoopoeApps because too many well-built apps never
-              find their audience. We&apos;re changing that, one app at a time.
+              find their audience. That&apos;s what HoopoeApps is here for.
             </p>
 
             <div className="team-cards reveal">
@@ -432,7 +432,7 @@ export default function HomePage() {
           <div className="container">
             <div className="apply-layout">
               <div className="apply-sidebar reveal">
-                <span className="section-label">Apply</span>
+                <span className="section-label">Ready to grow?</span>
                 <h2>Get your app in front of the right audience</h2>
                 <p>
                   Tell us about your app and what you&apos;re trying to achieve. We review every submission
