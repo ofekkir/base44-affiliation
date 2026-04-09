@@ -17,6 +17,17 @@
 ├── /plans
 │   └── hoopoeapps-landing-page-plan.md  ← HoopoeApps landing page spec
 ├── /context   ← spun out when 3+ related session learnings accumulate
+├── /base44-template-analysis/
+│   ├── fetch_templates.sh         ← shell script to re-fetch raw data (needs bearer token arg)
+│   ├── raw_data.json              ← full API response (1696 templates, gitignored)
+│   ├── templates-dense.json       ← cleaned/dense version of template data
+│   ├── 01_category_demand.py      ← chart: total usage per category
+│   ├── 02_revenue_potential.py    ← chart: free/paid ratio + price distribution
+│   ├── 03_opportunity_gap.py      ← chart: supply vs demand quadrant scatter
+│   ├── 04_growth_trends.py        ← chart: monthly creation + cumulative growth
+│   ├── 05_top_creators.py         ← chart: top 15 creators by usage & revenue
+│   ├── 06_usage_distribution.py   ← chart: log histogram + per-category box plots
+│   └── 07_sales_performance.py    ← chart: revenue by category + price-vs-sales
 └── /landing_gen/campaigns/hoopoeapps/output/hoopoeapps/  ← generated Next.js landing page
     ├── app/
     │   ├── api/submit/route.ts    ← form submission handler (emails via Resend to hello@hoopoeapps.com)
