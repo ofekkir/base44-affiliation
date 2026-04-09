@@ -37,6 +37,8 @@
 │       │   └── sitemap.ts
 │       └── lib/analytics.ts
 └── /context   ← spun out when 3+ related session learnings accumulate
+    ├── base44-affiliate-terms.pdf            ← full 17-page affiliate T&C (source PDF)
+    └── 2026-04-09-affiliate-terms-compliance.md ← summarized compliance rules
 ```
 
 ## Note-Taking
