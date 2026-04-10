@@ -1,10 +1,17 @@
 // Client-only utilities — all browser APIs are guarded with typeof window checks
 
 /**
- * Prompt that pre-populates Base44 when a user lands there via our CTA.
- * Describes the baby resemblance scoring app we want users to build.
+ * Short prompt carried in the Base44 URL (?prompt=...). Base44's marketing
+ * site pre-populates its textarea from this, but the feature is flaky —
+ * kept short to maximize the chance it actually fills in.
  */
-const BASE44_PROMPT = `Create a baby resemblance app where users upload three photos (baby, mom, dad) and AI analyzes how much the baby resembles each parent. Output a percentage score (e.g. 62% Dad, 38% Mom) plus a feature-by-feature breakdown (eyes, nose, mouth, face shape). Include a shareable score card with social share buttons and a fun playful UI.`
+const BASE44_URL_PROMPT = `Build a baby resemblance app: upload baby, mom, and dad photos, AI scores who the baby looks like most, shareable card.`
+
+/**
+ * Full prompt shown in the post-click modal for users to copy-paste into
+ * Base44 if the URL pre-fill didn't land (Wix SSR cache is unreliable).
+ */
+export const BASE44_FULL_PROMPT = `Create a baby resemblance app where users upload three photos (baby, mom, dad) and AI analyzes how much the baby resembles each parent. Output a percentage score (e.g. 62% Dad, 38% Mom) plus a feature-by-feature breakdown (eyes, nose, mouth, face shape). Include a shareable score card with social share buttons and a fun playful UI.`
 
 /**
  * Base44 affiliate tracking code (the `e=` query param value).
@@ -15,7 +22,7 @@ const BASE44_AFFILIATE_CODE = process.env.NEXT_PUBLIC_BASE44_AFFILIATE_CODE || '
 function buildBase44Url(): string {
   const params = new URLSearchParams()
   if (BASE44_AFFILIATE_CODE) params.set('e', BASE44_AFFILIATE_CODE)
-  params.set('prompt', BASE44_PROMPT)
+  params.set('prompt', BASE44_URL_PROMPT)
   return `https://base44.com/?${params.toString()}`
 }
 

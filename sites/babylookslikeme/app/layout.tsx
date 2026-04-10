@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Script from 'next/script'
 import { Manrope, Fraunces } from 'next/font/google'
 import { CookieConsentBanner } from './components/CookieConsentBanner'
+import { PromptRevealModal } from './components/PromptRevealModal'
 import './globals.css'
 
 const manrope = Manrope({
@@ -139,6 +140,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {children}
 
+        <PromptRevealModal />
         <CookieConsentBanner gtmConfigured={!!GTM_ID} hotjarConfigured={!!HOTJAR_ID} />
       </body>
     </html>
