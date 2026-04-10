@@ -24,21 +24,21 @@ const HOTJAR_ID = process.env.NEXT_PUBLIC_HOTJAR_ID || ''
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://babylookslikeme.com'),
-  title: 'Baby Looks Like Me — Build Your Own Baby Look-Alike App',
+  title: 'Baby Looks Like Me — Who Does Your Baby Look Like, Mom or Dad?',
   description:
-    'See what your future baby could look like. Build your own AI baby look-alike app — no coding needed. Upload two photos, generate results, and share with family.',
+    'Settle the family debate. Build your own AI app that scores how much your baby resembles mom vs dad — with a shareable feature breakdown. No coding needed.',
   openGraph: {
-    title: 'Baby Looks Like Me — Build Your Own Baby Look-Alike App',
+    title: 'Baby Looks Like Me — Who Does Your Baby Look Like, Mom or Dad?',
     description:
-      'See what your future baby could look like. Build your own AI baby look-alike app in minutes — no coding needed.',
+      'Settle the family debate. Build your own AI resemblance app that scores your baby against mom and dad — with a shareable breakdown.',
     url: 'https://babylookslikeme.com',
     siteName: 'Baby Looks Like Me',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Baby Looks Like Me — Build Your Own Baby Look-Alike App',
-    description: 'See what your future baby could look like. Build your own AI baby look-alike app in minutes.',
+    title: 'Baby Looks Like Me — Who Does Your Baby Look Like?',
+    description: 'Settle the family debate. Build your own AI app that scores your baby against mom and dad.',
   },
 }
 
@@ -103,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   '@id': 'https://babylookslikeme.com/#app',
                   name: 'Baby Looks Like Me',
                   description:
-                    'Build your own AI-powered baby look-alike app. Upload two parent photos, generate baby predictions, and share results with family and friends.',
+                    'Build your own AI baby resemblance app. Upload photos of your baby, mom, and dad — get a percentage score and feature-by-feature breakdown of who your baby looks like.',
                   applicationCategory: 'EntertainmentApplication',
                   operatingSystem: 'Web',
                   offers: {

@@ -13,8 +13,8 @@ export default function TermsPage() {
       <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>Service description</h2>
         <p style={{ lineHeight: 1.7, color: '#7A6B70' }}>
-          Baby Looks Like Me is an informational website that showcases the concept of a baby look-alike
-          generator app. We provide affiliate links to Base44, a third-party platform where you can
+          Baby Looks Like Me is an informational website that showcases the concept of a baby resemblance
+          scoring app. We provide affiliate links to Base44, a third-party platform where you can
           build your own app. We do not build, host, or maintain apps on your behalf.
         </p>
       </section>
@@ -22,9 +22,9 @@ export default function TermsPage() {
       <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>Entertainment purposes</h2>
         <p style={{ lineHeight: 1.7, color: '#7A6B70' }}>
-          All content on this site related to baby look-alike generation is for entertainment purposes only.
-          AI-generated images are fictional and do not predict actual genetic outcomes. No medical or
-          genetic claims are made.
+          All content on this site related to baby resemblance scoring is for entertainment purposes only.
+          AI-generated resemblance scores are fictional and are not medical, genetic, or parentage analysis.
+          No medical or genetic claims are made.
         </p>
       </section>
 

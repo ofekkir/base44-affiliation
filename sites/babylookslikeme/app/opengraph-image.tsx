@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Baby Looks Like Me — Build Your Own Baby Look-Alike App'
+export const alt = 'Baby Looks Like Me — Who Does Your Baby Look Like, Mom or Dad?'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -52,7 +52,7 @@ export default function OgImage() {
               lineHeight: 1.2,
             }}
           >
-            See what your future baby
+            Who does your baby
           </span>
           <span
             style={{
@@ -63,7 +63,7 @@ export default function OgImage() {
               lineHeight: 1.2,
             }}
           >
-            could look like
+            look like — mom or dad?
           </span>
         </div>
 
@@ -74,7 +74,7 @@ export default function OgImage() {
             textAlign: 'center',
           }}
         >
-          Build your own app in minutes — no coding needed
+          Settle the debate. Build your own app — no coding needed.
         </span>
       </div>
     ),
