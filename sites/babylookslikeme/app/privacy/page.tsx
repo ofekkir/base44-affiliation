@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Baby Looks Like Me',
-  description: 'How Baby Looks Like Me collects and uses visitor data.',
+  description:
+    'Baby Looks Like Me privacy policy — what data we collect, how we use cookies and analytics, and our affiliate link disclosure.',
+  alternates: { canonical: 'https://babylookslikeme.com/privacy' },
 }
 
 export default function PrivacyPage() {

@@ -1,5 +1,6 @@
 import { AffiliateCTA } from './components/AffiliateCTA'
 import { PageEffects } from './components/PageEffects'
+import { CookiePreferencesLink } from './components/CookiePreferencesLink'
 
 export default function HomePage() {
   return (
@@ -24,8 +25,8 @@ export default function HomePage() {
               <div className="hero-content">
                 <span className="section-label hero-anim hero-anim-1">AI Baby Resemblance App</span>
                 <h1 className="hero-headline hero-anim hero-anim-2">
-                  Who does your baby look like —<br />
-                  <em>mom or dad?</em>
+                  <span className="hero-headline-kicker">Who does your baby look more like,</span>
+                  <em>mom <span className="hero-amp">or</span> dad?</em>
                 </h1>
                 <p className="hero-subheadline hero-anim hero-anim-3">
                   Settle the family debate. Build your own AI app that scores how much your baby
@@ -293,7 +294,7 @@ export default function HomePage() {
               </div>
               <div className="use-case-item">
                 <h3>Baby shower games</h3>
-                <p>Upload the newborn and each guest&apos;s kid. See who has the closest family resemblance.</p>
+                <p>Play the ultimate guess-who game — show a newborn photo and let guests vote before the AI verdict drops.</p>
               </div>
               <div className="use-case-item">
                 <h3>Content creators</h3>
@@ -302,8 +303,44 @@ export default function HomePage() {
             </div>
 
             <p className="use-cases-stat reveal">
-              &ldquo;Who does my baby look like&rdquo; searches are up 2,900% in the US. The debate is real.
+              Every family has the argument. Now the debate ends with a score card.
             </p>
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section className="faq" id="faq">
+          <div className="container">
+            <div className="faq-header reveal">
+              <span className="section-label">Questions parents ask</span>
+              <h2>Who does my baby look like? Here&apos;s how to find out.</h2>
+            </div>
+            <div className="faq-list reveal">
+              <details className="faq-item">
+                <summary>Who does my baby look like — is there an app for that?</summary>
+                <p>Yes. This page shows you how to build your own baby resemblance app in minutes. Upload photos of your baby, mom, and dad — the app scores the resemblance feature by feature and gives you a shareable verdict with a percentage (for example, &ldquo;62% Dad, 38% Mom&rdquo;).</p>
+              </details>
+              <details className="faq-item">
+                <summary>How accurate is AI baby resemblance scoring?</summary>
+                <p>It&apos;s entertainment, not science. The AI compares visual features across photos — think personality quiz, not DNA test. Results vary with photo quality, lighting, and angles. It&apos;s meant to be fun and shareable, not authoritative.</p>
+              </details>
+              <details className="faq-item">
+                <summary>Does my baby look more like mom or dad?</summary>
+                <p>Babies change a lot during the first year. Research suggests newborns often look slightly more like their fathers early on, but this shifts fast. For your own baby, the AI gives you a fun percentage score right now — just upload three photos.</p>
+              </details>
+              <details className="faq-item">
+                <summary>Is the app free to use?</summary>
+                <p>You build your own version on Base44, a no-code app builder. Base44 has a free tier, so you can get started without a credit card.</p>
+              </details>
+              <details className="faq-item">
+                <summary>What features does the app compare?</summary>
+                <p>Eyes, nose, mouth, and overall face shape — each scored against both parents. The final output is a percentage score plus a feature-by-feature breakdown on a shareable card.</p>
+              </details>
+              <details className="faq-item">
+                <summary>Can grandparents use it?</summary>
+                <p>Absolutely. The app is simple enough for anyone in the family to use — upload three photos, tap Compare, get a result. No account, no setup, no tech skills needed.</p>
+              </details>
+            </div>
           </div>
         </section>
 
@@ -331,6 +368,7 @@ export default function HomePage() {
             <nav className="footer-links" aria-label="Footer navigation">
               <a href="/privacy">Privacy Policy</a>
               <a href="/terms">Terms</a>
+              <CookiePreferencesLink />
               <a href="mailto:hello@hoopoeapps.com">Contact</a>
             </nav>
           </div>

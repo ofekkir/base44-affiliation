@@ -22,6 +22,12 @@ export function CookieConsentBanner({ gtmConfigured, hotjarConfigured }: Props) 
     if (!hasConsentBeenSet()) setVisible(true)
   }, [])
 
+  useEffect(() => {
+    const handler = () => setVisible(true)
+    window.addEventListener('base44:open-cookie-prefs', handler)
+    return () => window.removeEventListener('base44:open-cookie-prefs', handler)
+  }, [])
+
   function updateConsent(accepted: boolean) {
     const value = accepted ? 'granted' : 'denied'
     writeStoredConsent(value)
