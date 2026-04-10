@@ -23,16 +23,28 @@
 │   ├── raw_data.json                    ← full API response (gitignored)
 │   └── templates-dense.json             ← cleaned template data (gitignored)
 ├── /sites                               ← landing pages (each a Next.js app)
-│   └── hoopoeapps/                      ← HoopoeApps landing page
+│   ├── hoopoeapps/                      ← HoopoeApps landing page
+│   │   ├── app/
+│   │   │   ├── api/submit/route.ts      ← form submission (Resend → hello@hoopoeapps.com)
+│   │   │   ├── components/
+│   │   │   │   ├── ApplyForm.tsx         ← step-by-step form + submission
+│   │   │   │   ├── AffiliateLink.tsx     ← tracked affiliate link
+│   │   │   │   ├── CTAButton.tsx         ← tracked CTA anchor
+│   │   │   │   └── PageEffects.tsx       ← session init + scroll-reveal
+│   │   │   ├── privacy/page.tsx
+│   │   │   ├── terms/page.tsx
+│   │   │   ├── robots.ts
+│   │   │   └── sitemap.ts
+│   │   └── lib/analytics.ts
+│   └── babylookslikeme/                 ← Baby Look-Alike affiliate landing page
 │       ├── app/
-│       │   ├── api/submit/route.ts      ← form submission (Resend → hello@hoopoeapps.com)
 │       │   ├── components/
-│       │   │   ├── ApplyForm.tsx         ← step-by-step form + submission
-│       │   │   ├── AffiliateLink.tsx     ← tracked affiliate link
-│       │   │   ├── CTAButton.tsx         ← tracked CTA anchor
-│       │   │   └── PageEffects.tsx       ← session init + scroll-reveal
+│       │   │   ├── AffiliateCTA.tsx      ← tracked affiliate link (rel="sponsored")
+│       │   │   ├── PageEffects.tsx       ← scroll-reveal
+│       │   │   └── CookieConsentBanner.tsx
 │       │   ├── privacy/page.tsx
 │       │   ├── terms/page.tsx
+│       │   ├── opengraph-image.tsx
 │       │   ├── robots.ts
 │       │   └── sitemap.ts
 │       └── lib/analytics.ts
