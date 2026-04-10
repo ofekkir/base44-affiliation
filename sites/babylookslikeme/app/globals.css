@@ -1083,9 +1083,85 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   .hero-phone { order: 0; }
   .hero-headline-kicker { letter-spacing: 0.1em; }
 
+  /* Mobile: collapse the 3 demo phones into a single auto-cycling slot
+     so the page doesn't become a wall of repeated pink phone mockups. */
   .demo-steps {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    display: block;
+    position: relative;
+    max-width: 260px;
+    margin: 0 auto;
+    min-height: 520px;
+    gap: 0;
+  }
+  .demo-step {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: demoCycle 12s ease-in-out infinite;
+    will-change: opacity, transform;
+  }
+  .demo-step:nth-child(1) { animation-delay: 0s; }
+  .demo-step:nth-child(2) { animation-delay: 4s; }
+  .demo-step:nth-child(3) { animation-delay: 8s; }
+
+  @keyframes demoCycle {
+    0%      { opacity: 0; transform: translateY(12px); }
+    4%, 30% { opacity: 1; transform: translateY(0); }
+    34%,100%{ opacity: 0; transform: translateY(-12px); }
+  }
+
+  /* Progress dots below the cycling phone */
+  .demo-steps::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1.75rem;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 6px;
+    background:
+      radial-gradient(circle 3px at 8px 3px, var(--color-primary) 100%, transparent 100%),
+      radial-gradient(circle 3px at 36px 3px, rgba(232,97,140,0.25) 100%, transparent 100%),
+      radial-gradient(circle 3px at 64px 3px, rgba(232,97,140,0.25) 100%, transparent 100%);
+    animation: demoDots 12s steps(1, end) infinite;
+  }
+  @keyframes demoDots {
+    0%, 33% {
+      background:
+        radial-gradient(circle 3px at 8px 3px, var(--color-primary) 100%, transparent 100%),
+        radial-gradient(circle 3px at 36px 3px, rgba(232,97,140,0.25) 100%, transparent 100%),
+        radial-gradient(circle 3px at 64px 3px, rgba(232,97,140,0.25) 100%, transparent 100%);
+    }
+    33.01%, 66% {
+      background:
+        radial-gradient(circle 3px at 8px 3px, rgba(232,97,140,0.25) 100%, transparent 100%),
+        radial-gradient(circle 3px at 36px 3px, var(--color-primary) 100%, transparent 100%),
+        radial-gradient(circle 3px at 64px 3px, rgba(232,97,140,0.25) 100%, transparent 100%);
+    }
+    66.01%, 100% {
+      background:
+        radial-gradient(circle 3px at 8px 3px, rgba(232,97,140,0.25) 100%, transparent 100%),
+        radial-gradient(circle 3px at 36px 3px, rgba(232,97,140,0.25) 100%, transparent 100%),
+        radial-gradient(circle 3px at 64px 3px, var(--color-primary) 100%, transparent 100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .demo-steps {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 0;
+      gap: 3rem;
+    }
+    .demo-step {
+      position: static;
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .demo-steps::after { display: none; }
   }
 
   .steps {
