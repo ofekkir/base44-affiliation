@@ -1,5 +1,6 @@
 // Server-rendered SVG avatars for the phone mockups.
-// These are stylized illustrations, not real photos.
+// Sticker-style illustrations: soft pastel background, a hint of a face,
+// and one decorative element per avatar. Not meant to look like real photos.
 
 export function AvatarBaby() {
   return (
@@ -11,29 +12,21 @@ export function AvatarBaby() {
       aria-hidden="true"
     >
       <circle cx="20" cy="20" r="20" fill="#FFE8D6" />
-      <circle cx="20" cy="19" r="8" fill="#F4B86A" />
-      <circle cx="17" cy="18" r="0.9" fill="#3F2A1A" />
-      <circle cx="23" cy="18" r="0.9" fill="#3F2A1A" />
+      {/* tiny dot eyes */}
+      <circle cx="16.5" cy="19" r="0.9" fill="#5B3A1F" />
+      <circle cx="23.5" cy="19" r="0.9" fill="#5B3A1F" />
+      {/* soft smile */}
       <path
-        d="M17 22 Q20 24 23 22"
-        stroke="#3F2A1A"
-        strokeWidth="1.2"
+        d="M17 23 Q20 25 23 23"
+        stroke="#5B3A1F"
+        strokeWidth="1.1"
         strokeLinecap="round"
         fill="none"
       />
+      {/* little heart decoration */}
       <path
-        d="M12 13 Q14 9 17 11"
-        stroke="#D99857"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M28 13 Q26 9 23 11"
-        stroke="#D99857"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        fill="none"
+        d="M20 32c-2.2-1.6-4-2.9-4-4.6 0-1 .8-1.8 1.8-1.8.8 0 1.5.4 2.2 1.2.7-.8 1.4-1.2 2.2-1.2 1 0 1.8.8 1.8 1.8 0 1.7-1.8 3-4 4.6Z"
+        fill="#E8618C"
       />
     </svg>
   )
@@ -49,16 +42,22 @@ export function AvatarMom() {
       aria-hidden="true"
     >
       <circle cx="20" cy="20" r="20" fill="#FDE1E9" />
+      {/* tiny dot eyes */}
+      <circle cx="16.5" cy="19" r="0.9" fill="#7A2E49" />
+      <circle cx="23.5" cy="19" r="0.9" fill="#7A2E49" />
+      {/* soft smile */}
       <path
-        d="M20 8c-5 0-8 3-8 7.5 0 2 .5 3.8 1.2 5l-1.2 4 4-1c1.2.7 2.5 1 4 1s2.8-.3 4-1l4 1-1.2-4c.7-1.2 1.2-3 1.2-5 0-4.5-3-7.5-8-7.5Z"
+        d="M17 23 Q20 25 23 23"
+        stroke="#7A2E49"
+        strokeWidth="1.1"
+        strokeLinecap="round"
+        fill="none"
+      />
+      {/* ponytail silhouette behind head, to the side */}
+      <path
+        d="M28 14c2.5 1.5 3.8 4.5 3 7.5-.8 3-2.8 4.5-5 5 .7-2 .8-4 0-6 1-2 1.2-4.5 2-6.5Z"
         fill="#E8618C"
       />
-      <path
-        d="M13 33c0-3.9 3-6.5 7-6.5s7 2.6 7 6.5"
-        fill="#E8618C"
-      />
-      <circle cx="17.5" cy="17" r="0.9" fill="#fff" />
-      <circle cx="22.5" cy="17" r="0.9" fill="#fff" />
     </svg>
   )
 }
@@ -73,23 +72,24 @@ export function AvatarDad() {
       aria-hidden="true"
     >
       <circle cx="20" cy="20" r="20" fill="#DCE8F6" />
+      {/* tiny dot eyes */}
+      <circle cx="16.5" cy="18" r="0.9" fill="#2F4466" />
+      <circle cx="23.5" cy="18" r="0.9" fill="#2F4466" />
+      {/* soft smile */}
       <path
-        d="M12 14c0-4 3.5-6 8-6s8 2 8 6c0 1.5-.3 2.8-.8 4H12.8c-.5-1.2-.8-2.5-.8-4Z"
-        fill="#3F5B85"
-      />
-      <circle cx="20" cy="19" r="5.5" fill="#5B7FB3" />
-      <path
-        d="M13 33c0-3.9 3-6.5 7-6.5s7 2.6 7 6.5"
-        fill="#5B7FB3"
-      />
-      <circle cx="17.5" cy="19" r="0.9" fill="#fff" />
-      <circle cx="22.5" cy="19" r="0.9" fill="#fff" />
-      <path
-        d="M16 23 Q20 25 24 23"
-        stroke="#3F5B85"
-        strokeWidth="1.2"
+        d="M17 22 Q20 24 23 22"
+        stroke="#2F4466"
+        strokeWidth="1.1"
         strokeLinecap="round"
         fill="none"
+      />
+      {/* simple beard outline along the jaw */}
+      <path
+        d="M13.5 22c.5 4 3.2 7 6.5 7s6-3 6.5-7c-1.8 1.2-4 1.8-6.5 1.8s-4.7-.6-6.5-1.8Z"
+        fill="none"
+        stroke="#5B7FB3"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
       />
     </svg>
   )
