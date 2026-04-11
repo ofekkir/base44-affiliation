@@ -53,10 +53,13 @@ export function AvatarMom() {
         strokeLinecap="round"
         fill="none"
       />
-      {/* ponytail silhouette behind head, to the side */}
+      {/* hair-line flourish above the face */}
       <path
-        d="M28 14c2.5 1.5 3.8 4.5 3 7.5-.8 3-2.8 4.5-5 5 .7-2 .8-4 0-6 1-2 1.2-4.5 2-6.5Z"
-        fill="#E8618C"
+        d="M13 11 Q20 8 27 11"
+        stroke="#E8618C"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+        fill="none"
       />
     </svg>
   )

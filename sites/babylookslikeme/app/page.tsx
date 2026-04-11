@@ -187,30 +187,29 @@ export default function HomePage() {
               <h2>Every occasion, one app</h2>
             </div>
 
-            <div className="use-cases-grid reveal">
-              <div className="use-case-item">
-                <h3>Family WhatsApp debates</h3>
-                <p>Every family has the argument. Settle it with a score card everyone can see.</p>
+            <div className="use-cases-hero reveal">
+              <div className="use-cases-hero-image">
+                <img
+                  src="/use-cases-celebration.jpg"
+                  alt="Family gathered together celebrating a new baby"
+                  loading="lazy"
+                  width="800"
+                  height="600"
+                />
               </div>
-              <div className="use-case-item">
-                <h3>First-birthday posts</h3>
-                <p>A year in, everyone has an opinion. Post the AI verdict and watch the comments roll in.</p>
-              </div>
-              <div className="use-case-item">
-                <h3>Meet-the-baby announcements</h3>
-                <p>Introduce the baby with a twist — reveal who they take after alongside the first photos.</p>
-              </div>
-              <div className="use-case-item">
-                <h3>Grandparent gifts</h3>
-                <p>Grandparents love proof the baby looks like their side. Give them the receipts.</p>
-              </div>
-              <div className="use-case-item">
-                <h3>Baby shower games</h3>
-                <p>Play the ultimate guess-who game — show a newborn photo and let guests vote before the AI verdict drops.</p>
-              </div>
-              <div className="use-case-item">
-                <h3>Content creators</h3>
-                <p>Resemblance reveals are pure engagement bait. Build the app, own the content, own the audience.</p>
+              <div className="use-cases-hero-cards">
+                <div className="use-case-item">
+                  <h3>Baby shower games</h3>
+                  <p>Play the ultimate guess-who — show a newborn photo and let guests vote before the verdict drops.</p>
+                </div>
+                <div className="use-case-item">
+                  <h3>Meet-the-baby announcements</h3>
+                  <p>Reveal who the baby takes after alongside the first photos.</p>
+                </div>
+                <div className="use-case-item">
+                  <h3>Grandparent gifts</h3>
+                  <p>Grandparents love proof the baby looks like their side. Give them the receipts.</p>
+                </div>
               </div>
             </div>
 
