@@ -28,6 +28,14 @@ export function CookieConsentBanner({ gtmConfigured, hotjarConfigured }: Props) 
     return () => window.removeEventListener('base44:open-cookie-prefs', handler)
   }, [])
 
+  // Reserve space at the bottom of the page while the banner is visible
+  // so it doesn't overlap the final CTA on mobile.
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+    document.body.classList.toggle('has-cookie-banner', visible)
+    return () => document.body.classList.remove('has-cookie-banner')
+  }, [visible])
+
   function updateConsent(accepted: boolean) {
     const value = accepted ? 'granted' : 'denied'
     writeStoredConsent(value)

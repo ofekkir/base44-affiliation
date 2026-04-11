@@ -1,6 +1,8 @@
 import { AffiliateCTA } from './components/AffiliateCTA'
 import { PageEffects } from './components/PageEffects'
 import { CookiePreferencesLink } from './components/CookiePreferencesLink'
+import { DemoCarousel } from './components/DemoCarousel'
+import { ShareRow } from './components/ShareRow'
 
 export default function HomePage() {
   return (
@@ -33,7 +35,7 @@ export default function HomePage() {
                   resembles each parent — with a shareable feature-by-feature breakdown.
                 </p>
                 <div className="hero-cta-group hero-anim hero-anim-4">
-                  <AffiliateCTA className="btn-primary" location="hero">Build Your Resemblance App &rarr;</AffiliateCTA>
+                  <AffiliateCTA className="btn-primary" location="hero">Build Your App — Free &rarr;</AffiliateCTA>
                   <span className="hero-note">Your app is ready in minutes — no coding needed</span>
                 </div>
               </div>
@@ -81,7 +83,7 @@ export default function HomePage() {
               <h2>Your app, three simple steps</h2>
             </div>
 
-            <div className="demo-steps reveal">
+            <DemoCarousel>
               {/* Step 1: Upload baby + parents */}
               <div className="demo-step">
                 <div className="phone-frame">
@@ -165,7 +167,7 @@ export default function HomePage() {
                 <h3 className="demo-step-title">Share the score card</h3>
                 <p className="demo-step-body">One tap to send the result to family, friends, or the group chat.</p>
               </div>
-            </div>
+            </DemoCarousel>
           </div>
         </section>
 
@@ -262,7 +264,7 @@ export default function HomePage() {
             </div>
 
             <div className="how-cta reveal">
-              <AffiliateCTA className="btn-primary" location="how_it_works">Build Your Resemblance App &rarr;</AffiliateCTA>
+              <AffiliateCTA className="btn-primary" location="how_it_works">Build Your App — Free &rarr;</AffiliateCTA>
             </div>
           </div>
         </section>
@@ -351,8 +353,9 @@ export default function HomePage() {
               <span className="section-label">Ready?</span>
               <h2>Build your baby resemblance app right now</h2>
               <p className="final-cta-sub">One click. One prompt. Your app is live in minutes.</p>
-              <AffiliateCTA className="btn-primary btn-primary--lg" location="final_cta">Build Your Resemblance App &rarr;</AffiliateCTA>
+              <AffiliateCTA className="btn-primary btn-primary--lg" location="final_cta">Build Your App — Free &rarr;</AffiliateCTA>
               <span className="final-cta-note">No coding required. Built on Base44.</span>
+              <ShareRow />
             </div>
           </div>
         </section>
