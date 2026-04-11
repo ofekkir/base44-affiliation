@@ -182,9 +182,8 @@ export default function HomePage() {
         {/* ── Use Cases ── */}
         <section className="use-cases">
           <div className="container">
-            <div className="reveal">
-              <span className="section-label">Perfect for</span>
-              <h2>Every occasion, one app</h2>
+            <div className="use-cases-header reveal">
+              <h2>Every family has the argument. Now the debate ends with a score card.</h2>
             </div>
 
             <div className="use-cases-hero reveal">
@@ -212,10 +211,6 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-
-            <p className="use-cases-stat reveal">
-              Every family has the argument. Now the debate ends with a score card.
-            </p>
           </div>
         </section>
 
@@ -264,7 +259,6 @@ export default function HomePage() {
               <p className="final-cta-sub">One click. One prompt. Your app is live in minutes.</p>
               <AffiliateCTA className="btn-primary btn-primary--lg" location="final_cta">Build It Now</AffiliateCTA>
               <span className="final-cta-note">No coding required. Built on Base44.</span>
-              <p className="final-cta-share-label">Or ask a friend to build it for you</p>
               <ShareRow />
             </div>
           </div>

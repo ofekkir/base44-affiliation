@@ -25,21 +25,6 @@ function track(channel: string) {
 export function ShareRow() {
   const [copied, setCopied] = useState(false)
 
-  const nativeShare = async () => {
-    track('native')
-    if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
-      try {
-        await navigator.share({
-          title: 'Baby Looks Like Me',
-          text: SHARE_TEXT,
-          url: SHARE_URL,
-        })
-      } catch {
-        /* user cancelled */
-      }
-    }
-  }
-
   const copyLink = async () => {
     track('copy')
     try {
@@ -95,18 +80,6 @@ export function ShareRow() {
             <path d="M13.4 21v-8h2.6l.4-3h-3V8.1c0-.86.24-1.45 1.48-1.45H16.6V4c-.27-.04-1.2-.12-2.28-.12-2.26 0-3.8 1.38-3.8 3.9V10H8v3h2.52v8h2.88Z"/>
           </svg>
         </a>
-        <button
-          type="button"
-          className="share-btn share-btn--native"
-          aria-label="Share via device"
-          onClick={nativeShare}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-            <polyline points="16 6 12 2 8 6"/>
-            <line x1="12" y1="2" x2="12" y2="15"/>
-          </svg>
-        </button>
         <button
           type="button"
           className="share-btn share-btn--copy"
