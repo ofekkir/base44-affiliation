@@ -3,6 +3,8 @@ import { PageEffects } from './components/PageEffects'
 import { CookiePreferencesLink } from './components/CookiePreferencesLink'
 import { DemoCarousel } from './components/DemoCarousel'
 import { ShareRow } from './components/ShareRow'
+import { ScoreCardMock } from './components/ScoreCardMock'
+import { AvatarBaby, AvatarMom, AvatarDad } from './components/MockAvatars'
 
 export default function HomePage() {
   return (
@@ -15,7 +17,7 @@ export default function HomePage() {
           <a href="/" className="nav-logo nav-wordmark" aria-label="Baby Looks Like Me">
             Baby Looks Like Me
           </a>
-          <AffiliateCTA className="btn-nav" location="nav">Build Your App &rarr;</AffiliateCTA>
+          <AffiliateCTA className="btn-nav" location="nav">Build It Now</AffiliateCTA>
         </div>
       </nav>
 
@@ -35,7 +37,7 @@ export default function HomePage() {
                   resembles each parent — with a shareable feature-by-feature breakdown.
                 </p>
                 <div className="hero-cta-group hero-anim hero-anim-4">
-                  <AffiliateCTA className="btn-primary" location="hero">Build Your App — Free &rarr;</AffiliateCTA>
+                  <AffiliateCTA className="btn-primary" location="hero">Build It Now</AffiliateCTA>
                   <span className="hero-note">Your app is ready in minutes — no coding needed</span>
                 </div>
               </div>
@@ -45,29 +47,7 @@ export default function HomePage() {
                 <div className="phone-frame phone-frame--tilt">
                   <div className="phone-notch" />
                   <div className="phone-screen">
-                    <div className="mock-app">
-                      <div className="mock-app-header">Who&apos;s the winner?</div>
-                      <div className="mock-score">
-                        <div className="mock-score-percent">62% Dad</div>
-                        <div className="mock-score-bar" aria-hidden="true">
-                          <div className="mock-score-bar-fill" style={{ width: '62%' }} />
-                        </div>
-                        <div className="mock-score-labels">
-                          <span className="mock-score-label-dad">Dad 62%</span>
-                          <span className="mock-score-label-mom">Mom 38%</span>
-                        </div>
-                        <ul className="mock-feature-list">
-                          <li><span>Eyes</span><strong>Mom</strong></li>
-                          <li><span>Nose</span><strong>Dad</strong></li>
-                          <li><span>Mouth</span><strong>Mom</strong></li>
-                          <li><span>Face shape</span><strong>Dad</strong></li>
-                        </ul>
-                      </div>
-                      <div className="mock-share-row">
-                        <span className="mock-share-btn">Share</span>
-                        <span className="mock-share-btn">Save</span>
-                      </div>
-                    </div>
+                    <ScoreCardMock />
                   </div>
                 </div>
               </div>
@@ -92,17 +72,20 @@ export default function HomePage() {
                     <div className="mock-app">
                       <div className="mock-app-header">Upload 3 photos</div>
                       <div className="mock-upload-stack">
-                        <div className="mock-upload-row">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="2"/></svg>
+                        <div className="mock-upload-row mock-upload-row--filled">
+                          <AvatarBaby />
                           <span>Baby</span>
+                          <svg className="mock-upload-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
                         </div>
                         <div className="mock-upload-row">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="2"/></svg>
+                          <AvatarMom />
                           <span>Mom</span>
+                          <span className="mock-upload-add" aria-hidden="true">+</span>
                         </div>
                         <div className="mock-upload-row">
-                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="currentColor" strokeWidth="2"/></svg>
+                          <AvatarDad />
                           <span>Dad</span>
+                          <span className="mock-upload-add" aria-hidden="true">+</span>
                         </div>
                       </div>
                       <div className="mock-btn">Compare</div>
@@ -143,29 +126,12 @@ export default function HomePage() {
                 <div className="phone-frame">
                   <div className="phone-notch" />
                   <div className="phone-screen">
-                    <div className="mock-app">
-                      <div className="mock-app-header">The verdict</div>
-                      <div className="mock-score">
-                        <div className="mock-score-percent">62% Dad</div>
-                        <div className="mock-score-bar" aria-hidden="true">
-                          <div className="mock-score-bar-fill" style={{ width: '62%' }} />
-                        </div>
-                        <div className="mock-score-labels">
-                          <span className="mock-score-label-dad">Dad 62%</span>
-                          <span className="mock-score-label-mom">Mom 38%</span>
-                        </div>
-                      </div>
-                      <div className="mock-share-row">
-                        <span className="mock-share-btn">WhatsApp</span>
-                        <span className="mock-share-btn">Instagram</span>
-                        <span className="mock-share-btn">Copy</span>
-                      </div>
-                    </div>
+                    <ScoreCardMock />
                   </div>
                 </div>
                 <span className="demo-step-number" aria-hidden="true">03</span>
-                <h3 className="demo-step-title">Share the score card</h3>
-                <p className="demo-step-body">One tap to send the result to family, friends, or the group chat.</p>
+                <h3 className="demo-step-title">A little bit of both</h3>
+                <p className="demo-step-body">One tap sends the verdict to the family group chat.</p>
               </div>
             </DemoCarousel>
           </div>
@@ -264,7 +230,7 @@ export default function HomePage() {
             </div>
 
             <div className="how-cta reveal">
-              <AffiliateCTA className="btn-primary" location="how_it_works">Build Your App — Free &rarr;</AffiliateCTA>
+              <AffiliateCTA className="btn-primary" location="how_it_works">Build It Now</AffiliateCTA>
             </div>
           </div>
         </section>
@@ -353,7 +319,7 @@ export default function HomePage() {
               <span className="section-label">Ready?</span>
               <h2>Build your baby resemblance app right now</h2>
               <p className="final-cta-sub">One click. One prompt. Your app is live in minutes.</p>
-              <AffiliateCTA className="btn-primary btn-primary--lg" location="final_cta">Build Your App — Free &rarr;</AffiliateCTA>
+              <AffiliateCTA className="btn-primary btn-primary--lg" location="final_cta">Build It Now</AffiliateCTA>
               <span className="final-cta-note">No coding required. Built on Base44.</span>
               <ShareRow />
             </div>
