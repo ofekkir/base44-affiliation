@@ -37,6 +37,13 @@
 │   │   │   └── sitemap.ts
 │   │   └── lib/analytics.ts
 │   └── babylookslikeme/                 ← Baby Look-Alike affiliate landing page
+│       ├── ads/                          ← paid ads strategy & playbook
+│       │   ├── ADS-STRATEGY.md
+│       │   ├── CAMPAIGN-ARCHITECTURE.md
+│       │   ├── BUDGET-PLAN.md
+│       │   ├── CREATIVE-BRIEF.md
+│       │   ├── TRACKING-SETUP.md
+│       │   └── IMPLEMENTATION-ROADMAP.md
 │       ├── app/
 │       │   ├── components/
 │       │   │   ├── AffiliateCTA.tsx      ← tracked affiliate link (rel="sponsored")
