@@ -27,13 +27,12 @@ export default function HomePage() {
           <div className="container">
             <div className="hero-layout">
               <div className="hero-content">
-                <span className="section-label hero-anim hero-anim-1">AI Baby Resemblance App</span>
                 <h1 className="hero-headline hero-anim hero-anim-2">
                   <span className="hero-headline-kicker">Who does your baby look more like,</span>
                   <em>mom <span className="hero-amp">or</span> dad?</em>
                 </h1>
                 <p className="hero-subheadline hero-anim hero-anim-3">
-                  Settle the family debate. Build your own AI app that scores how much your baby
+                  Settle the family debate. Build your own app that scores how much your baby
                   resembles each parent — with a shareable feature-by-feature breakdown.
                 </p>
                 <div className="hero-cta-group hero-anim hero-anim-4">
@@ -117,7 +116,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <span className="demo-step-number" aria-hidden="true">02</span>
-                <h3 className="demo-step-title">AI compares features</h3>
+                <h3 className="demo-step-title">Feature-by-feature comparison</h3>
                 <p className="demo-step-body">The app analyzes each feature and scores it against both parents.</p>
               </div>
 
@@ -134,61 +133,6 @@ export default function HomePage() {
                 <p className="demo-step-body">One tap sends the verdict to the family group chat.</p>
               </div>
             </DemoCarousel>
-          </div>
-        </section>
-
-        {/* ── Why Build Your Own ── */}
-        <section className="benefits">
-          <div className="container">
-            <div className="benefits-header reveal">
-              <span className="section-label">Why build it yourself?</span>
-              <h2>More than just a family debate</h2>
-            </div>
-
-            <div className="benefits-grid reveal">
-              <div className="benefit-card">
-                <span className="benefit-icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 5C8.5 5 5 9.5 7 14c2 4.5 7 9 7 9s5-4.5 7-9c2-4.5-1.5-9-7-9Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                </span>
-                <h3>Settle the debate</h3>
-                <p>Every family argues about it. Let AI score the resemblance and finally end the discussion.</p>
-              </div>
-              <div className="benefit-card">
-                <span className="benefit-icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="10" cy="10" r="4" stroke="currentColor" strokeWidth="2"/><circle cx="18" cy="10" r="4" stroke="currentColor" strokeWidth="2"/><path d="M4 24c0-4 3-7 7-7h6c4 0 7 3 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
-                </span>
-                <h3>Shareable score cards</h3>
-                <p>Every result is a ready-to-share card. Drop it in the family WhatsApp and watch the reactions.</p>
-              </div>
-              <div className="benefit-card">
-                <span className="benefit-icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="4" y="4" width="20" height="20" rx="4" stroke="currentColor" strokeWidth="2"/><path d="M10 14h8M14 10v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
-                </span>
-                <h3>Feature-by-feature breakdown</h3>
-                <p>Not just a single number — eyes, nose, mouth, face shape, all scored individually.</p>
-              </div>
-              <div className="benefit-card">
-                <span className="benefit-icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 14l4-8 4 4 4-6 4 6 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M4 20h20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
-                </span>
-                <h3>Grandparent-friendly</h3>
-                <p>Simple enough that anyone in the family can upload photos and get a result in seconds.</p>
-              </div>
-              <div className="benefit-card">
-                <span className="benefit-icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="2"/><path d="M11 11v1c0 1.7 1.3 3 3 3s3-1.3 3-3v-1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M14 17v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M11 20h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
-                </span>
-                <h3>Make it yours</h3>
-                <p>Your name, your branding, your domain. Run it as a fun side project — or monetize it.</p>
-              </div>
-              <div className="benefit-card">
-                <span className="benefit-icon" aria-hidden="true">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 22l4-8 4 3 4-6 4 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="21" cy="7" r="3" stroke="currentColor" strokeWidth="2"/></svg>
-                </span>
-                <h3>No code needed</h3>
-                <p>The entire app gets built from a single prompt. Click one button and it&apos;s done.</p>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -321,6 +265,7 @@ export default function HomePage() {
               <p className="final-cta-sub">One click. One prompt. Your app is live in minutes.</p>
               <AffiliateCTA className="btn-primary btn-primary--lg" location="final_cta">Build It Now</AffiliateCTA>
               <span className="final-cta-note">No coding required. Built on Base44.</span>
+              <p className="final-cta-share-label">Or ask a friend to build it for you</p>
               <ShareRow />
             </div>
           </div>
@@ -353,6 +298,7 @@ export default function HomePage() {
               not medical or genetic analysis, and should not be used to determine parentage.
               This site is not directed at children under 13.
             </p>
+            <p className="footer-disclaimer">The mockups and screenshots shown on this page are illustrations of what a resemblance-scoring app could look like. The actual app you build on Base44 is generated fresh from your prompt and will look different — its final design, features, and look-and-feel are up to you.</p>
             <p className="footer-copyright">&copy; 2026 Baby Looks Like Me</p>
           </div>
         </div>
