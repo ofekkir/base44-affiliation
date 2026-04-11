@@ -22,6 +22,18 @@ export default function TermsPage() {
       </section>
 
       <section style={{ marginBottom: '2rem' }}>
+        <h2 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>Illustrative mockups</h2>
+        <p style={{ lineHeight: 1.7, color: '#7A6B70' }}>
+          The mockups, screenshots, and UI examples shown on this site are illustrations of what a
+          resemblance-scoring app could look like. They are not the app you will receive. When you
+          click a build button, Base44 generates a new app from the prompt we pass along. Your app&apos;s
+          layout, features, copy, color palette, and look-and-feel are determined by Base44&apos;s
+          generator and your own customizations — they will differ from the mockups on this site.
+          We make no guarantee that the app you build will match the visuals shown here.
+        </p>
+      </section>
+
+      <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>Entertainment purposes</h2>
         <p style={{ lineHeight: 1.7, color: '#7A6B70' }}>
           All content on this site related to baby resemblance scoring is for entertainment purposes only.
