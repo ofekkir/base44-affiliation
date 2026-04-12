@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { AvatarMom, AvatarDad } from './MockAvatars'
 
 // Shared score-card screen used in the hero phone and demo step 3.
@@ -13,11 +14,11 @@ export function ScoreCardMock() {
           <span>Mom</span>
         </div>
         <div className="mock-score-avatar mock-score-avatar--baby">
-          <img
+          <Image
             src="/baby-avatar.jpg"
             alt=""
-            width="56"
-            height="56"
+            width={56}
+            height={56}
             className="mock-score-baby-photo"
           />
           <span>Baby</span>
