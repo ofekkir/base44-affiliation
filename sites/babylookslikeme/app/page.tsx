@@ -74,7 +74,7 @@ export default function HomePage() {
                       <div className="mock-app-header">Upload 3 photos</div>
                       <div className="mock-upload-stack">
                         <div className="mock-upload-row mock-upload-row--filled">
-                          <Image src="/baby-avatar.jpg" alt="" width={28} height={28} className="mock-upload-photo" />
+                          <Image src="/babylook/baby-avatar.jpg" alt="" width={28} height={28} className="mock-upload-photo" />
                           <span>Baby</span>
                         </div>
                         <div className="mock-upload-row">
@@ -106,7 +106,7 @@ export default function HomePage() {
                       <div className="mock-app-header">Analyzing...</div>
                       <div className="mock-analyze">
                         <div className="mock-spinner">
-                          <Image src="/baby-avatar.jpg" alt="" width={40} height={40} className="mock-spinner-photo" />
+                          <Image src="/babylook/baby-avatar.jpg" alt="" width={40} height={40} className="mock-spinner-photo" />
                         </div>
                         <ul className="mock-analyze-list">
                           <li className="mock-analyze-item mock-analyze-item--done">Eyes <span>✓</span></li>
@@ -192,7 +192,7 @@ export default function HomePage() {
             <div className="use-cases-hero reveal">
               <div className="use-cases-hero-image">
                 <Image
-                  src="/use-cases-celebration.jpg"
+                  src="/babylook/use-cases-celebration.jpg"
                   alt="Family gathered together celebrating a new baby"
                   loading="lazy"
                   width={800}
