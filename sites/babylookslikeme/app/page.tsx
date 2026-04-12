@@ -6,7 +6,7 @@ import { CookiePreferencesLink } from './components/CookiePreferencesLink'
 import { DemoCarousel } from './components/DemoCarousel'
 import { ShareRow } from './components/ShareRow'
 import { ScoreCardMock } from './components/ScoreCardMock'
-import { AvatarBaby, AvatarMom, AvatarDad } from './components/MockAvatars'
+import { AvatarMom, AvatarDad } from './components/MockAvatars'
 
 export default function HomePage() {
   return (
@@ -74,9 +74,8 @@ export default function HomePage() {
                       <div className="mock-app-header">Upload 3 photos</div>
                       <div className="mock-upload-stack">
                         <div className="mock-upload-row mock-upload-row--filled">
-                          <AvatarBaby />
+                          <img src="/baby-avatar.jpg" alt="" width="28" height="28" className="mock-upload-photo" />
                           <span>Baby</span>
-                          <svg className="mock-upload-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>
                         </div>
                         <div className="mock-upload-row">
                           <AvatarMom />
@@ -89,7 +88,7 @@ export default function HomePage() {
                           <span className="mock-upload-add" aria-hidden="true">+</span>
                         </div>
                       </div>
-                      <div className="mock-btn">Compare</div>
+                      <div className="mock-btn mock-btn--disabled">Compare</div>
                     </div>
                   </div>
                 </div>
@@ -106,12 +105,14 @@ export default function HomePage() {
                     <div className="mock-app">
                       <div className="mock-app-header">Analyzing...</div>
                       <div className="mock-analyze">
-                        <div className="mock-spinner" />
+                        <div className="mock-spinner">
+                          <img src="/baby-avatar.jpg" alt="" width="40" height="40" className="mock-spinner-photo" />
+                        </div>
                         <ul className="mock-analyze-list">
                           <li className="mock-analyze-item mock-analyze-item--done">Eyes <span>✓</span></li>
                           <li className="mock-analyze-item mock-analyze-item--done">Nose <span>✓</span></li>
                           <li className="mock-analyze-item">Mouth <span>…</span></li>
-                          <li className="mock-analyze-item mock-analyze-item--dim">Face shape</li>
+                          <li className="mock-analyze-item">Face shape</li>
                         </ul>
                       </div>
                     </div>
