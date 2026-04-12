@@ -28,11 +28,11 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://babylookslikeme.com'),
+  metadataBase: new URL('https://hoopoeapps.com/babylook'),
   title: 'Who Does My Baby Look Like — Mom or Dad? | Baby Looks Like Me',
   description:
     'Wondering who your baby looks like — mom or dad? Build your own AI resemblance app in minutes that scores each feature and shares the verdict. Free to try.',
-  alternates: { canonical: 'https://babylookslikeme.com' },
+  alternates: { canonical: 'https://hoopoeapps.com/babylook' },
   icons: {
     icon: '/logo.svg',
     apple: '/logo.svg',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Who Does Your Baby Look Like — Mom or Dad?',
     description:
       'Settle the family debate. Build your own AI resemblance app that scores your baby against mom and dad — with a shareable breakdown.',
-    url: 'https://babylookslikeme.com',
+    url: 'https://hoopoeapps.com/babylook',
     siteName: 'Baby Looks Like Me',
     type: 'website',
   },
@@ -110,24 +110,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@graph': [
                 {
                   '@type': 'WebSite',
-                  '@id': 'https://babylookslikeme.com/#website',
-                  url: 'https://babylookslikeme.com',
+                  '@id': 'https://hoopoeapps.com/babylook/#website',
+                  url: 'https://hoopoeapps.com/babylook',
                   name: 'Baby Looks Like Me',
                   inLanguage: 'en-US',
                 },
                 {
                   '@type': 'WebPage',
-                  '@id': 'https://babylookslikeme.com/#webpage',
-                  url: 'https://babylookslikeme.com',
+                  '@id': 'https://hoopoeapps.com/babylook/#webpage',
+                  url: 'https://hoopoeapps.com/babylook',
                   name: 'Who Does My Baby Look Like — Mom or Dad?',
-                  isPartOf: { '@id': 'https://babylookslikeme.com/#website' },
+                  isPartOf: { '@id': 'https://hoopoeapps.com/babylook/#website' },
                   inLanguage: 'en-US',
                   description:
                     'Build an AI app that scores how much your baby resembles mom vs dad, with a shareable feature-by-feature breakdown.',
                 },
                 {
                   '@type': 'FAQPage',
-                  '@id': 'https://babylookslikeme.com/#faq',
+                  '@id': 'https://hoopoeapps.com/babylook/#faq',
                   mainEntity: [
                     {
                       '@type': 'Question',

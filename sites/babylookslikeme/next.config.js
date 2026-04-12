@@ -7,6 +7,7 @@ const securityHeaders = [
 ]
 
 const nextConfig = {
+  basePath: '/babylook',
   output: 'standalone',
   images: {
     unoptimized: true,

@@ -4,7 +4,7 @@ export const metadata: Metadata = {
   title: 'Terms of Service | Baby Looks Like Me',
   description:
     'Terms of service for Baby Looks Like Me — entertainment disclaimer, affiliate relationship, and age restriction.',
-  alternates: { canonical: 'https://babylookslikeme.com/terms' },
+  alternates: { canonical: 'https://hoopoeapps.com/babylook/terms' },
 }
 
 export default function TermsPage() {

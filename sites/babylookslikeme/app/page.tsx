@@ -1,3 +1,5 @@
+import Link from 'next/link'
+import Image from 'next/image'
 import { AffiliateCTA } from './components/AffiliateCTA'
 import { PageEffects } from './components/PageEffects'
 import { CookiePreferencesLink } from './components/CookiePreferencesLink'
@@ -14,9 +16,9 @@ export default function HomePage() {
       {/* ── Nav ── */}
       <nav className="nav">
         <div className="container nav-inner">
-          <a href="/" className="nav-logo nav-wordmark" aria-label="Baby Looks Like Me">
+          <Link href="/" className="nav-logo nav-wordmark" aria-label="Baby Looks Like Me">
             Baby Looks Like Me
-          </a>
+          </Link>
           <AffiliateCTA className="btn-nav" location="nav">Build It Now</AffiliateCTA>
         </div>
       </nav>
@@ -188,12 +190,12 @@ export default function HomePage() {
 
             <div className="use-cases-hero reveal">
               <div className="use-cases-hero-image">
-                <img
+                <Image
                   src="/use-cases-celebration.jpg"
                   alt="Family gathered together celebrating a new baby"
                   loading="lazy"
-                  width="800"
-                  height="600"
+                  width={800}
+                  height={600}
                 />
               </div>
               <div className="use-cases-hero-cards">
@@ -269,12 +271,12 @@ export default function HomePage() {
       <footer className="footer">
         <div className="container">
           <div className="footer-top">
-            <a href="/" className="footer-logo nav-wordmark nav-wordmark--sm" aria-label="Baby Looks Like Me">
+            <Link href="/" className="footer-logo nav-wordmark nav-wordmark--sm" aria-label="Baby Looks Like Me">
               Baby Looks Like Me
-            </a>
+            </Link>
             <nav className="footer-links" aria-label="Footer navigation">
-              <a href="/privacy">Privacy Policy</a>
-              <a href="/terms">Terms</a>
+              <Link href="/privacy">Privacy Policy</Link>
+              <Link href="/terms">Terms</Link>
               <CookiePreferencesLink />
               <a href="mailto:hello@hoopoeapps.com">Contact</a>
             </nav>

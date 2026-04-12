@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { hasConsentBeenSet, writeStoredConsent } from '../../lib/cookieConsent'
 
 interface Props {
@@ -69,9 +70,9 @@ export function CookieConsentBanner({ gtmConfigured, hotjarConfigured }: Props) 
     <div className="cookie-banner" role="dialog" aria-label="Cookie consent">
       <p>
         We use cookies to understand how visitors use this site.{' '}
-        <a href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>
+        <Link href="/privacy" style={{ color: 'inherit', textDecoration: 'underline' }}>
           Privacy Policy
-        </a>
+        </Link>
       </p>
       <div className="cookie-banner-actions">
         <button className="cookie-btn" onClick={() => updateConsent(false)}>
