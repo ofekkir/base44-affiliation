@@ -24,22 +24,22 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
 const HOTJAR_ID = process.env.NEXT_PUBLIC_HOTJAR_ID || ''
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hoopoeapps.vercel.app'),
-  title: 'Free Ad Management for App Builders | HoopoeApps',
+  metadataBase: new URL('https://hoopoeapps.com'),
+  title: 'HoopoeApps — On a mission to revolutionize the way apps sell',
   description:
-    'Built a vibe-coded app? We set up and manage your Google and Meta ad campaigns professionally, at no charge. You fund the ads. We do the work.',
+    'We believe every great app deserves to find its audience. HoopoeApps is building the tools to make it happen.',
   openGraph: {
-    title: 'Free Ad Management for App Builders | HoopoeApps',
+    title: 'HoopoeApps — On a mission to revolutionize the way apps sell',
     description:
-      'We set up and manage your Google and Meta campaigns — professionally. You fund the ads. We do the work, at no charge.',
-    url: 'https://hoopoeapps.vercel.app',
+      'We believe every great app deserves to find its audience. HoopoeApps is building the tools to make it happen.',
+    url: 'https://hoopoeapps.com',
     siteName: 'HoopoeApps',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Free Ad Management for App Builders | HoopoeApps',
-    description: 'Free Google and Meta ad management for app builders. You set the budget. We handle everything else.',
+    title: 'HoopoeApps — On a mission to revolutionize the way apps sell',
+    description: 'We believe every great app deserves to find its audience.',
   },
 }
 
@@ -104,24 +104,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   '@id': 'https://hoopoeapps.com/#organization',
                   name: 'HoopoeApps',
                   url: 'https://hoopoeapps.com',
+                  description: 'On a mission to revolutionize the way apps sell.',
                   founder: [
                     { '@type': 'Person', name: 'Ofek Kirzner', url: 'https://www.linkedin.com/in/ofekkirzner/' },
                     { '@type': 'Person', name: 'Dan Riesel', url: 'https://www.linkedin.com/in/danriesel/' },
                   ],
-                },
-                {
-                  '@type': 'Service',
-                  '@id': 'https://hoopoeapps.com/#service',
-                  name: 'Free Ad Management for App Builders',
-                  provider: { '@id': 'https://hoopoeapps.com/#organization' },
-                  description:
-                    'HoopoeApps sets up and manages Google and Meta ad campaigns for indie app builders at no cost. Founders fund the ad spend; HoopoeApps handles strategy, copy, targeting, and optimization.',
-                  offers: {
-                    '@type': 'Offer',
-                    price: '0',
-                    priceCurrency: 'USD',
-                    description: 'Free ad campaign management — you fund the spend, we handle everything else.',
-                  },
                 },
                 {
                   '@type': 'WebSite',
