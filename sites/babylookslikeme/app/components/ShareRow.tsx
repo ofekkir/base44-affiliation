@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-const SHARE_URL = 'https://babylookslikeme.com'
+const SHARE_URL = 'https://hoopoeapps.com/babylook'
 const SHARE_TEXT = 'Who does your baby look more like — mom or dad? Build your own AI app to settle it:'
 
 declare global {
