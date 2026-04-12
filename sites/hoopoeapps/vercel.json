@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/babylook",
+      "destination": "https://babylookslikeme.vercel.app/babylook"
+    },
+    {
       "source": "/babylook/:path*",
       "destination": "https://babylookslikeme.vercel.app/babylook/:path*"
     }
