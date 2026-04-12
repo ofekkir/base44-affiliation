@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import { PageEffects } from './components/PageEffects'
 
 export default function HomePage() {
@@ -13,7 +12,7 @@ export default function HomePage() {
           <a href="/" className="nav-logo nav-logo-badge" aria-label="HoopoeApps">
             HoopoeApps
           </a>
-          <a href="mailto:hello@hoopoeapps.com" className="btn-nav">Get in touch</a>
+          <span />  {/* spacer for nav layout */}
         </div>
       </nav>
 
@@ -62,18 +61,13 @@ export default function HomePage() {
       <footer className="footer">
         <div className="container">
           <div className="footer-top">
-            <a href="/" className="footer-logo nav-logo-badge nav-logo-badge--sm" aria-label="HoopoeApps">
-              HoopoeApps
-            </a>
             <nav className="footer-links" aria-label="Footer navigation">
-              <Link href="/privacy">Privacy Policy</Link>
-              <Link href="/terms">Terms</Link>
               <a href="mailto:hello@hoopoeapps.com">Contact</a>
             </nav>
           </div>
 
           <div className="footer-legal">
-            <p className="footer-copyright">&copy; 2026 HoopoeApps</p>
+            <p className="footer-copyright">&copy; 2026 HoopoeApps (in formation)</p>
           </div>
         </div>
       </footer>
