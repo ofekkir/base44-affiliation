@@ -15,7 +15,7 @@ export function ScoreCardMock() {
         </div>
         <div className="mock-score-avatar mock-score-avatar--baby">
           <Image
-            src="/baby-avatar.jpg"
+            src="/babylook/baby-avatar.jpg"
             alt=""
             width={56}
             height={56}
