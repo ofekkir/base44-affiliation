@@ -59,16 +59,9 @@ export default function HomePage() {
 
       {/* ── Footer ── */}
       <footer className="footer">
-        <div className="container">
-          <div className="footer-top">
-            <nav className="footer-links" aria-label="Footer navigation">
-              <a href="mailto:hello@hoopoeapps.com">Contact</a>
-            </nav>
-          </div>
-
-          <div className="footer-legal">
-            <p className="footer-copyright">&copy; 2026 HoopoeApps (in formation)</p>
-          </div>
+        <div className="container footer-row">
+          <p className="footer-copyright">&copy; 2026 HoopoeApps (in formation)</p>
+          <a href="mailto:hello@hoopoeapps.com" className="footer-contact">Contact</a>
         </div>
       </footer>
     </>
