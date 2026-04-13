@@ -1,7 +1,4 @@
 research/raw_data.json
 research/templates-dense.json
 research/*.png
-
-# Google setup script credentials
-google/.env
-google/node_modules/
+.vercel
