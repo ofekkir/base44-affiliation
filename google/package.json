@@ -1,0 +1,18 @@
+{
+  "name": "hoopoeapps-gtm-setup",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "auth": "tsx get-refresh-token.ts",
+    "setup": "tsx setup-gtm.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "googleapis": "^148.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "@types/node": "^20"
+  }
+}

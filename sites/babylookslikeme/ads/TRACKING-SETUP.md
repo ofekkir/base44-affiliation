@@ -1,7 +1,7 @@
 # Tracking Setup
 
 ## Current state
-- `lib/analytics.ts` exposes `trackEvent(name, params)` that fires to `gtag` and Hotjar (`hj`).
+- `lib/analytics.ts` exposes `trackEvent(name, params)` that fires to `gtag`. Session recording is handled by Microsoft Clarity via GTM.
 - Affiliate URL uses Impact tracking: `https://base44.pxf.io/c/7188348/2049275/25619?trafcat=base`.
 - `AffiliateCTA.tsx` and `CTAButton.tsx` already wrap clicks; assume both call `trackEvent` for outbound. (Verify before launch.)
 - No Meta Pixel, no TikTok Pixel, no Pinterest Tag installed.

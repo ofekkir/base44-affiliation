@@ -22,6 +22,10 @@
 │   ├── 01–07_*.py                       ← chart scripts (demand, revenue, gaps, etc.)
 │   ├── raw_data.json                    ← full API response (gitignored)
 │   └── templates-dense.json             ← cleaned template data (gitignored)
+├── /google                              ← GTM setup script (creates containers + GA4 + Clarity tags)
+│   ├── setup-gtm.ts                     ← run with `npm run setup` after filling .env
+│   ├── .env.example                     ← required Google OAuth + GTM + GA4 + Clarity IDs
+│   └── package.json
 ├── /sites                               ← landing pages (each a Next.js app)
 │   ├── hoopoeapps/                      ← HoopoeApps landing page
 │   │   ├── app/

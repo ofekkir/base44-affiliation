@@ -11,12 +11,10 @@ export const BASE44_AFFILIATE_URL = 'https://base44.pxf.io/c/7188348/2049275/256
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void
-    hj?: (...args: unknown[]) => void
   }
 }
 
 export function trackEvent(name: string, params?: Record<string, string | number | boolean>): void {
   if (typeof window === 'undefined') return
   if (typeof window.gtag === 'function') window.gtag('event', name, params ?? {})
-  if (typeof window.hj === 'function') window.hj('event', name)
 }

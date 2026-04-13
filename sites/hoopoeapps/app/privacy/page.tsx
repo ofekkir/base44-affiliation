@@ -31,7 +31,7 @@ export default function PrivacyPage() {
 
       <h2>Cookies</h2>
       <p>
-        We use cookies for analytics (Google Analytics via GTM) and session recording (Hotjar),
+        We use cookies for analytics (Google Analytics via GTM) and session recording (Microsoft Clarity),
         only after you grant consent via the banner on our homepage.
       </p>
 
