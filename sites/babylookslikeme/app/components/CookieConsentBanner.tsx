@@ -6,17 +6,15 @@ import { hasConsentBeenSet, writeStoredConsent } from '../../lib/cookieConsent'
 
 interface Props {
   gtmConfigured: boolean
-  hotjarConfigured: boolean
 }
 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void
-    hj?: (...args: unknown[]) => void
   }
 }
 
-export function CookieConsentBanner({ gtmConfigured, hotjarConfigured }: Props) {
+export function CookieConsentBanner({ gtmConfigured }: Props) {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -51,16 +49,10 @@ export function CookieConsentBanner({ gtmConfigured, hotjarConfigured }: Props) 
           ad_personalization: 'granted',
         })
       }
-      if (hotjarConfigured && typeof window.hj === 'function') {
-        window.hj('consent', true)
-      }
     }
 
     if (typeof window.gtag === 'function') {
       window.gtag('event', accepted ? 'cookie_consent_accepted' : 'cookie_consent_declined')
-    }
-    if (typeof window.hj === 'function') {
-      window.hj('event', accepted ? 'cookie_consent_accepted' : 'cookie_consent_declined')
     }
   }
 

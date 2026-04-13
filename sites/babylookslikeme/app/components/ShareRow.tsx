@@ -8,7 +8,6 @@ const SHARE_TEXT = 'Who does your baby look more like — mom or dad? Build your
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void
-    hj?: (...args: unknown[]) => void
   }
 }
 
@@ -16,9 +15,6 @@ function track(channel: string) {
   if (typeof window === 'undefined') return
   if (typeof window.gtag === 'function') {
     window.gtag('event', 'share_click', { method: channel })
-  }
-  if (typeof window.hj === 'function') {
-    window.hj('event', `share_${channel}`)
   }
 }
 

@@ -23,7 +23,7 @@ export default function PrivacyPage() {
       <section style={{ marginBottom: '2rem' }}>
         <h2 style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>Cookies and analytics</h2>
         <p style={{ lineHeight: 1.7, color: '#7A6B70' }}>
-          We may use Google Tag Manager and Hotjar to understand how visitors interact with this site.
+          We may use Google Tag Manager and Microsoft Clarity to understand how visitors interact with this site.
           These tools use cookies and similar technologies. You can accept or decline cookies via the
           banner shown on your first visit. Declining cookies disables analytics tracking entirely.
         </p>
