@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import Script from 'next/script'
 import { Manrope, Fraunces } from 'next/font/google'
 import { CookieConsentBanner } from './components/CookieConsentBanner'
 import { PromptRevealModal } from './components/PromptRevealModal'
@@ -57,8 +56,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Google Consent Mode — init BEFORE GTM */}
         {GTM_ID && (
-          <Script id="gcm-init" strategy="beforeInteractive">
-            {`
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('consent', 'default', {
@@ -68,21 +68,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 ad_personalization: 'denied',
                 wait_for_update: 500
               });
-            `}
-          </Script>
+            `,
+            }}
+          />
         )}
 
         {/* Google Tag Manager */}
         {GTM_ID && (
-          <Script id="gtm-init" strategy="beforeInteractive">
-            {`
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
               new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
               j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','${GTM_ID}');
-            `}
-          </Script>
+            `,
+            }}
+          />
         )}
 
         <script
