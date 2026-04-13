@@ -1,6 +1,6 @@
 // Client-only utilities — all browser APIs are guarded with typeof window checks
 
-export const BASE44_AFFILIATE_URL = process.env.NEXT_PUBLIC_BASE44_AFFILIATE_URL || 'https://base44.com/'
+export const BASE44_AFFILIATE_URL = process.env.NEXT_PUBLIC_BASE44_AFFILIATE_URL || 'https://base44.pxf.io/c/7188348/2049275/25619?trafcat=base'
 
 declare global {
   interface Window {
