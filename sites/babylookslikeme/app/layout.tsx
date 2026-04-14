@@ -19,34 +19,35 @@ const fraunces = Fraunces({
   display: 'swap',
 })
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
+const GTM_ID = (process.env.NEXT_PUBLIC_GTM_ID || '').trim()
 
 export const viewport: Viewport = {
   themeColor: '#E8618C',
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hoopoeapps.com/babylook'),
-  title: 'Who Does My Baby Look Like — Mom or Dad? | Baby Looks Like Me',
+  metadataBase: new URL('https://hoopoeapps.com'),
+  title: 'Baby Look Alike App: Who Does My Baby Look Like? | Baby Looks Like Me',
   description:
-    'Wondering who your baby looks like — mom or dad? Build your own AI resemblance app in minutes that scores each feature and shares the verdict. Free to try.',
+    'Build your own baby look alike app in minutes — AI scores how much your baby resembles mom or dad, feature by feature, with a shareable result card. Free to try.',
   alternates: { canonical: 'https://hoopoeapps.com/babylook' },
+  robots: { index: true, follow: true },
   icons: {
     icon: '/logo.svg',
     apple: '/logo.svg',
   },
   openGraph: {
-    title: 'Who Does Your Baby Look Like — Mom or Dad?',
+    title: 'Baby Look Alike App: Who Does My Baby Look Like?',
     description:
-      'Settle the family debate. Build your own AI resemblance app that scores your baby against mom and dad — with a shareable breakdown.',
+      'Build your own baby look alike app that scores how much your baby resembles mom or dad — feature by feature, shareable in one tap.',
     url: 'https://hoopoeapps.com/babylook',
     siteName: 'Baby Looks Like Me',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Who Does Your Baby Look Like — Mom or Dad?',
-    description: 'Settle the family debate with an AI resemblance app. Built in minutes, no coding.',
+    title: 'Baby Look Alike App: Who Does My Baby Look Like?',
+    description: 'Build your own baby look alike app. AI scores mom vs dad, feature by feature. No coding.',
   },
 }
 
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${manrope.variable} ${fraunces.variable}`}>
       <head>
+        {GTM_ID && <link rel="preconnect" href="https://www.googletagmanager.com" />}
         {/* Google Consent Mode + dataLayer init — inline, runs during parse */}
         {GTM_ID && (
           <script
@@ -86,75 +88,64 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@context': 'https://schema.org',
               '@graph': [
                 {
+                  '@type': 'Organization',
+                  '@id': 'https://hoopoeapps.com/#organization',
+                  name: 'HoopoeApps',
+                  url: 'https://hoopoeapps.com/',
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    email: 'hello@hoopoeapps.com',
+                    contactType: 'customer support',
+                  },
+                },
+                {
                   '@type': 'WebSite',
                   '@id': 'https://hoopoeapps.com/babylook/#website',
                   url: 'https://hoopoeapps.com/babylook',
                   name: 'Baby Looks Like Me',
                   inLanguage: 'en-US',
+                  publisher: { '@id': 'https://hoopoeapps.com/#organization' },
                 },
                 {
                   '@type': 'WebPage',
                   '@id': 'https://hoopoeapps.com/babylook/#webpage',
                   url: 'https://hoopoeapps.com/babylook',
-                  name: 'Who Does My Baby Look Like — Mom or Dad?',
+                  name: 'Baby Look Alike App: Who Does My Baby Look Like?',
                   isPartOf: { '@id': 'https://hoopoeapps.com/babylook/#website' },
                   inLanguage: 'en-US',
                   description:
-                    'Build an AI app that scores how much your baby resembles mom vs dad, with a shareable feature-by-feature breakdown.',
+                    'Build your own baby look alike app that scores how much your baby resembles mom or dad, with a shareable feature-by-feature breakdown.',
+                  datePublished: '2026-04-01',
+                  dateModified: '2026-04-14',
+                  breadcrumb: {
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                      { '@type': 'ListItem', position: 1, name: 'HoopoeApps', item: 'https://hoopoeapps.com/' },
+                      { '@type': 'ListItem', position: 2, name: 'Baby Looks Like Me', item: 'https://hoopoeapps.com/babylook' },
+                    ],
+                  },
                 },
                 {
-                  '@type': 'FAQPage',
-                  '@id': 'https://hoopoeapps.com/babylook/#faq',
-                  mainEntity: [
-                    {
-                      '@type': 'Question',
-                      name: 'Who does my baby look like — is there an app for that?',
-                      acceptedAnswer: {
-                        '@type': 'Answer',
-                        text: 'Yes. Build your own baby resemblance app in minutes: upload photos of your baby, mom, and dad, and AI scores the resemblance feature by feature. You get a percentage result plus a breakdown by eyes, nose, mouth, and face shape — all shareable in one tap.',
-                      },
-                    },
-                    {
-                      '@type': 'Question',
-                      name: 'How accurate is AI baby resemblance scoring?',
-                      acceptedAnswer: {
-                        '@type': 'Answer',
-                        text: 'Baby resemblance apps are entertainment tools, not scientific analysis. The AI compares visual features across photos and generates a playful score — think personality quiz, not DNA test. Results vary with photo quality, lighting, and angles.',
-                      },
-                    },
-                    {
-                      '@type': 'Question',
-                      name: 'Does my baby look more like mom or dad?',
-                      acceptedAnswer: {
-                        '@type': 'Answer',
-                        text: 'Babies change a lot during the first year. Research suggests newborns often look slightly more like their fathers in the early weeks, but this shifts quickly. An AI app gives you a fun, shareable score for your own baby right now — just upload three photos.',
-                      },
-                    },
-                    {
-                      '@type': 'Question',
-                      name: 'Is the baby resemblance app free to use?',
-                      acceptedAnswer: {
-                        '@type': 'Answer',
-                        text: 'You build your own version on Base44, a no-code app builder. Base44 offers a free tier so you can get started without a credit card.',
-                      },
-                    },
-                    {
-                      '@type': 'Question',
-                      name: 'What features does the baby resemblance app compare?',
-                      acceptedAnswer: {
-                        '@type': 'Answer',
-                        text: 'The app analyzes eyes, nose, mouth, and overall face shape — scoring each one against both parents and producing a total percentage score with a shareable card.',
-                      },
-                    },
-                    {
-                      '@type': 'Question',
-                      name: 'Can grandparents use a baby resemblance app?',
-                      acceptedAnswer: {
-                        '@type': 'Answer',
-                        text: 'Absolutely. The app is designed to be simple enough for anyone — upload a photo of the baby, mom, and dad, tap Compare, and the result is instant. No account needed to try.',
-                      },
-                    },
+                  '@type': 'SoftwareApplication',
+                  '@id': 'https://hoopoeapps.com/babylook/#app',
+                  name: 'Baby Look Alike App',
+                  applicationCategory: 'LifestyleApplication',
+                  operatingSystem: 'Web',
+                  description:
+                    'AI-powered baby look alike app that scores how much your baby resembles mom or dad across eyes, nose, mouth, and face shape — with a shareable result card.',
+                  featureList: [
+                    'Photo upload for baby, mom, and dad',
+                    'Feature-by-feature resemblance scoring',
+                    'Shareable result card with percentage breakdown',
                   ],
+                  offers: {
+                    '@type': 'Offer',
+                    price: '0',
+                    priceCurrency: 'USD',
+                    availability: 'https://schema.org/InStock',
+                    seller: { '@type': 'Organization', name: 'Base44', url: 'https://base44.com' },
+                  },
+                  isPartOf: { '@id': 'https://hoopoeapps.com/babylook/#webpage' },
                 },
               ],
             }),
