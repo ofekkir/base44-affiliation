@@ -3,6 +3,19 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Terms of Service | HoopoeApps',
   description: 'Terms governing use of the HoopoeApps free ad management service.',
+  alternates: { canonical: '/terms' },
+  openGraph: {
+    title: 'Terms of Service | HoopoeApps',
+    description: 'Terms governing use of the HoopoeApps free ad management service.',
+    url: 'https://hoopoeapps.com/terms',
+    siteName: 'HoopoeApps',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service | HoopoeApps',
+    description: 'Terms governing use of the HoopoeApps free ad management service.',
+  },
 }
 
 export default function TermsPage() {

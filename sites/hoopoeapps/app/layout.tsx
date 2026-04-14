@@ -19,18 +19,22 @@ const fraunces = Fraunces({
   display: 'swap',
 })
 
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
+const GTM_ID = (process.env.NEXT_PUBLIC_GTM_ID || '').trim()
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://hoopoeapps.com'),
-  title: 'HoopoeApps — On a mission to revolutionize the way apps sell',
+  title: {
+    default: 'HoopoeApps — On a mission to revolutionize the way apps sell',
+    template: '%s | HoopoeApps',
+  },
   description:
     'We believe every great app deserves to find its audience. HoopoeApps is building the tools to make it happen.',
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'HoopoeApps — On a mission to revolutionize the way apps sell',
     description:
       'We believe every great app deserves to find its audience. HoopoeApps is building the tools to make it happen.',
-    url: 'https://hoopoeapps.com',
+    url: 'https://hoopoeapps.com/',
     siteName: 'HoopoeApps',
     type: 'website',
   },
@@ -45,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${manrope.variable} ${fraunces.variable}`}>
       <head>
+        {GTM_ID && <link rel="preconnect" href="https://www.googletagmanager.com" />}
         {/* Google Consent Mode + dataLayer init — inline, runs during parse */}
         {GTM_ID && (
           <script
@@ -80,17 +85,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   '@type': 'Organization',
                   '@id': 'https://hoopoeapps.com/#organization',
                   name: 'HoopoeApps',
-                  url: 'https://hoopoeapps.com',
+                  url: 'https://hoopoeapps.com/',
                   description: 'On a mission to revolutionize the way apps sell.',
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://hoopoeapps.com/opengraph-image',
+                  },
+                  sameAs: [
+                    'https://www.linkedin.com/in/ofekkirzner/',
+                    'https://www.linkedin.com/in/danriesel/',
+                  ],
                   founder: [
                     { '@type': 'Person', name: 'Ofek Kirzner', url: 'https://www.linkedin.com/in/ofekkirzner/' },
                     { '@type': 'Person', name: 'Dan Riesel', url: 'https://www.linkedin.com/in/danriesel/' },
                   ],
+                  contactPoint: {
+                    '@type': 'ContactPoint',
+                    email: 'hello@hoopoeapps.com',
+                    contactType: 'customer support',
+                  },
                 },
                 {
                   '@type': 'WebSite',
                   '@id': 'https://hoopoeapps.com/#website',
-                  url: 'https://hoopoeapps.com',
+                  url: 'https://hoopoeapps.com/',
                   name: 'HoopoeApps',
                   publisher: { '@id': 'https://hoopoeapps.com/#organization' },
                 },

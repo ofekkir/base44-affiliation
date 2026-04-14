@@ -30,12 +30,12 @@ export default function HomePage() {
             <div className="hero-layout">
               <div className="hero-content">
                 <h1 className="hero-headline hero-anim hero-anim-2">
-                  <span className="hero-headline-kicker">Who does your baby look more like,</span>
+                  <span className="hero-headline-kicker">Who does my baby look like,</span>
                   <em>mom <span className="hero-amp">or</span> dad?</em>
                 </h1>
                 <p className="hero-subheadline hero-anim hero-anim-3">
-                  Settle the family debate. Build your own app that scores how much your baby
-                  resembles each parent — with a shareable feature-by-feature breakdown.
+                  Build your own baby look alike app that scores how much your baby resembles
+                  each parent — with a shareable feature-by-feature breakdown.
                 </p>
                 <div className="hero-cta-group hero-anim hero-anim-4">
                   <AffiliateCTA className="btn-primary" location="hero">Build It Now</AffiliateCTA>
@@ -222,7 +222,7 @@ export default function HomePage() {
           <div className="container">
             <div className="faq-header reveal">
               <span className="section-label">Questions parents ask</span>
-              <h2>Who does my baby look like? Here&apos;s how to find out.</h2>
+              <h2>Baby look alike app: how it works</h2>
             </div>
             <div className="faq-list reveal">
               <details className="faq-item">
@@ -258,7 +258,7 @@ export default function HomePage() {
           <div className="container">
             <div className="final-cta-inner reveal">
               <span className="section-label">Ready?</span>
-              <h2>Build your baby resemblance app right now</h2>
+              <h2>Build a baby look alike app right now</h2>
               <p className="final-cta-sub">One click. One prompt. Your app is live in minutes.</p>
               <AffiliateCTA className="btn-primary btn-primary--lg" location="final_cta">Build It Now</AffiliateCTA>
               <span className="final-cta-note">No coding required. Built on Base44.</span>

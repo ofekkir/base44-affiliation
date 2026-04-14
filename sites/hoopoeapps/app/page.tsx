@@ -66,9 +66,9 @@ export default function HomePage() {
           </div>
           <div className="footer-col">
             <h4 className="footer-col-heading">Friends</h4>
-            <a href="https://www.israelevcharge.com" target="_blank" rel="noopener noreferrer">Israel EV Charge</a>
-            <a href="https://www.israelevcharge.com/blog" target="_blank" rel="noopener noreferrer">EV Charging Blog</a>
-            <a href="https://www.israelevcharge.com/quiz" target="_blank" rel="noopener noreferrer">Find Your Charger</a>
+            <a href="https://www.israelevcharge.com" target="_blank" rel="noopener noreferrer nofollow">Israel EV Charge</a>
+            <a href="https://www.israelevcharge.com/blog" target="_blank" rel="noopener noreferrer nofollow">EV Charging Blog</a>
+            <a href="https://www.israelevcharge.com/quiz" target="_blank" rel="noopener noreferrer nofollow">Find Your Charger</a>
           </div>
         </div>
         <div className="container footer-bottom">

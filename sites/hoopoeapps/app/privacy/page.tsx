@@ -3,6 +3,19 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Privacy Policy | HoopoeApps',
   description: 'How HoopoeApps collects, uses, and protects your data.',
+  alternates: { canonical: '/privacy' },
+  openGraph: {
+    title: 'Privacy Policy | HoopoeApps',
+    description: 'How HoopoeApps collects, uses, and protects your data.',
+    url: 'https://hoopoeapps.com/privacy',
+    siteName: 'HoopoeApps',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy | HoopoeApps',
+    description: 'How HoopoeApps collects, uses, and protects your data.',
+  },
 }
 
 export default function PrivacyPage() {
