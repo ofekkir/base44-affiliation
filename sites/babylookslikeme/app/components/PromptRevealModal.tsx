@@ -5,11 +5,14 @@ import { BASE44_FULL_PROMPT, trackEvent } from '../../lib/analytics'
 
 export function PromptRevealModal() {
   const [open, setOpen] = useState(false)
+  const [prompt, setPrompt] = useState(BASE44_FULL_PROMPT)
   const [copied, setCopied] = useState(false)
   const dialogRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const onCtaClick = () => {
+    const onCtaClick = (e: Event) => {
+      const detail = (e as CustomEvent).detail as { prompt?: string } | undefined
+      if (detail?.prompt) setPrompt(detail.prompt)
       setOpen(true)
       setCopied(false)
     }
@@ -23,21 +26,19 @@ export function PromptRevealModal() {
       if (e.key === 'Escape') setOpen(false)
     }
     window.addEventListener('keydown', onKey)
-    // Focus the dialog for accessibility
     dialogRef.current?.focus()
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(BASE44_FULL_PROMPT)
+      await navigator.clipboard.writeText(prompt)
       setCopied(true)
       trackEvent('prompt_copied')
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      // clipboard API may be blocked; fall back to a select + execCommand
       const ta = document.createElement('textarea')
-      ta.value = BASE44_FULL_PROMPT
+      ta.value = prompt
       ta.style.position = 'fixed'
       ta.style.left = '-9999px'
       document.body.appendChild(ta)
@@ -92,12 +93,12 @@ export function PromptRevealModal() {
 
         <p className="prompt-modal-body">
           Sign in or create an account, then paste the prompt below into Base44&apos;s
-          text box if it isn&apos;t already there. You can come back to this page any time
-          to copy it again.
+          text box. Base44 will read the URL in the prompt and build this exact app
+          for you.
         </p>
 
         <div className="prompt-modal-prompt" aria-label="Prompt to paste into Base44">
-          {BASE44_FULL_PROMPT}
+          {prompt}
         </div>
 
         <button

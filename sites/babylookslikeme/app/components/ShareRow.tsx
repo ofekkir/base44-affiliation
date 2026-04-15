@@ -3,7 +3,8 @@
 import { useState } from 'react'
 
 const SHARE_URL = 'https://hoopoeapps.com/babylook'
-const SHARE_TEXT = 'Who does your baby look more like — mom or dad? Build your own AI app to settle it:'
+const SHARE_TEXT =
+  'Every baby moment deserves its own little app — from pregnancy to first birthday. Build yours in minutes:'
 
 declare global {
   interface Window {
