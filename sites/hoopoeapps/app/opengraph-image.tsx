@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'HoopoeApps — Free ad management for app builders'
+export const alt = 'HoopoeApps — On a mission to revolutionize the way apps sell'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -34,7 +34,7 @@ export default function OgImage() {
         >
           <span
             style={{
-              fontSize: '52px',
+              fontSize: '48px',
               fontWeight: 800,
               fontStyle: 'italic',
               color: '#FAFAF7',
@@ -46,46 +46,79 @@ export default function OgImage() {
           </span>
         </div>
 
+        <span
+          style={{
+            fontSize: '26px',
+            color: '#c8a96a',
+            textAlign: 'center',
+            letterSpacing: '0.04em',
+            marginBottom: '28px',
+            fontStyle: 'italic',
+            fontFamily: 'Georgia, serif',
+          }}
+        >
+          Our mission
+        </span>
+
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            marginBottom: '24px',
+            marginBottom: '32px',
           }}
         >
           <span
             style={{
-              fontSize: '56px',
+              fontSize: '58px',
               fontWeight: 800,
+              fontStyle: 'italic',
               color: '#FAFAF7',
               textAlign: 'center',
-              lineHeight: 1.2,
+              lineHeight: 1.15,
+              fontFamily: 'Georgia, serif',
             }}
           >
-            Free ad management
+            Revolutionizing the way
           </span>
-          <span
-            style={{
-              fontSize: '56px',
-              fontWeight: 800,
-              color: '#FAFAF7',
-              textAlign: 'center',
-              lineHeight: 1.2,
-            }}
-          >
-            for app builders
-          </span>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'baseline' }}>
+            <span
+              style={{
+                fontSize: '58px',
+                fontWeight: 800,
+                fontStyle: 'italic',
+                color: '#FAFAF7',
+                lineHeight: 1.15,
+                fontFamily: 'Georgia, serif',
+              }}
+            >
+              apps
+            </span>
+            <span
+              style={{
+                fontSize: '58px',
+                fontWeight: 800,
+                fontStyle: 'italic',
+                color: '#c8a96a',
+                lineHeight: 1.15,
+                fontFamily: 'Georgia, serif',
+              }}
+            >
+              find their audience.
+            </span>
+          </div>
         </div>
 
         <span
           style={{
-            fontSize: '28px',
+            fontSize: '26px',
             color: '#a3a3a3',
             textAlign: 'center',
+            lineHeight: 1.4,
+            maxWidth: '900px',
           }}
         >
-          Google & Meta campaigns — professionally run, at no charge
+          Every great app deserves to be found. We&apos;re building the tools to make it happen.
         </span>
       </div>
     ),

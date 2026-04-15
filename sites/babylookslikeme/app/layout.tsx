@@ -27,9 +27,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://hoopoeapps.com'),
-  title: 'Baby Look Alike App: Who Does My Baby Look Like? | Baby Looks Like Me',
+  title: 'Baby Moment Apps: A Little App for Every Milestone | Baby Looks Like Me',
   description:
-    'Build your own baby look alike app in minutes — AI scores how much your baby resembles mom or dad, feature by feature, with a shareable result card. Free to try.',
+    'Every baby moment deserves its own little app. Build look-alike scores, future-baby previews, gender reveals, shower games, and monthly photo collages — no coding. Free to try.',
   alternates: { canonical: 'https://hoopoeapps.com/babylook' },
   robots: { index: true, follow: true },
   icons: {
@@ -37,17 +37,17 @@ export const metadata: Metadata = {
     apple: '/logo.svg',
   },
   openGraph: {
-    title: 'Baby Look Alike App: Who Does My Baby Look Like?',
+    title: 'Baby Moment Apps: A Little App for Every Milestone',
     description:
-      'Build your own baby look alike app that scores how much your baby resembles mom or dad — feature by feature, shareable in one tap.',
+      'Every baby moment deserves its own little app. Look-alike scores, gender reveals, shower games, and more — built on Base44 in minutes.',
     url: 'https://hoopoeapps.com/babylook',
     siteName: 'Baby Looks Like Me',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Baby Look Alike App: Who Does My Baby Look Like?',
-    description: 'Build your own baby look alike app. AI scores mom vs dad, feature by feature. No coding.',
+    title: 'Baby Moment Apps: A Little App for Every Milestone',
+    description: 'Build a little app for every baby moment — look-alike, gender reveal, shower game, and more. No coding.',
   },
 }
 
@@ -107,16 +107,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   publisher: { '@id': 'https://hoopoeapps.com/#organization' },
                 },
                 {
-                  '@type': 'WebPage',
+                  '@type': 'CollectionPage',
                   '@id': 'https://hoopoeapps.com/babylook/#webpage',
                   url: 'https://hoopoeapps.com/babylook',
-                  name: 'Baby Look Alike App: Who Does My Baby Look Like?',
+                  name: 'Baby Moment Apps: A Little App for Every Milestone',
                   isPartOf: { '@id': 'https://hoopoeapps.com/babylook/#website' },
                   inLanguage: 'en-US',
                   description:
-                    'Build your own baby look alike app that scores how much your baby resembles mom or dad, with a shareable feature-by-feature breakdown.',
+                    'A gallery of little apps for every baby moment — look-alike scores, future-baby previews, gender reveals, shower games, and monthly photo collages. Built on Base44, no coding needed.',
                   datePublished: '2026-04-01',
-                  dateModified: '2026-04-14',
+                  dateModified: '2026-04-15',
                   breadcrumb: {
                     '@type': 'BreadcrumbList',
                     itemListElement: [
@@ -124,28 +124,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       { '@type': 'ListItem', position: 2, name: 'Baby Looks Like Me', item: 'https://hoopoeapps.com/babylook' },
                     ],
                   },
-                },
-                {
-                  '@type': 'SoftwareApplication',
-                  '@id': 'https://hoopoeapps.com/babylook/#app',
-                  name: 'Baby Look Alike App',
-                  applicationCategory: 'LifestyleApplication',
-                  operatingSystem: 'Web',
-                  description:
-                    'AI-powered baby look alike app that scores how much your baby resembles mom or dad across eyes, nose, mouth, and face shape — with a shareable result card.',
-                  featureList: [
-                    'Photo upload for baby, mom, and dad',
-                    'Feature-by-feature resemblance scoring',
-                    'Shareable result card with percentage breakdown',
-                  ],
-                  offers: {
-                    '@type': 'Offer',
-                    price: '0',
-                    priceCurrency: 'USD',
-                    availability: 'https://schema.org/InStock',
-                    seller: { '@type': 'Organization', name: 'Base44', url: 'https://base44.com' },
+                  mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Baby moment apps',
+                    itemListElement: [
+                      { '@type': 'ListItem', position: 1, name: 'Future baby preview', description: 'Upload photos of mom and dad. Preview your future baby with an age slider.' },
+                      { '@type': 'ListItem', position: 2, name: 'Gender reveal', description: 'A shareable countdown page with a scratch-to-reveal card and confetti.' },
+                      { '@type': 'ListItem', position: 3, name: 'Baby shower game', description: 'Guests vote look-alike, guess due date, and rank names — all on their phones.' },
+                      { '@type': 'ListItem', position: 4, name: 'Baby look-alike score', description: 'AI scores how much your baby resembles mom or dad, feature by feature.' },
+                      { '@type': 'ListItem', position: 5, name: 'Monthly photo collage', description: 'One photo a month builds a twelve-tile collage for the first-birthday slideshow.' },
+                    ],
                   },
-                  isPartOf: { '@id': 'https://hoopoeapps.com/babylook/#webpage' },
                 },
               ],
             }),
