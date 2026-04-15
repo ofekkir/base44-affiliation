@@ -31,15 +31,16 @@ export default function PrivacyPage() {
 
       <h2>What we collect</h2>
       <p>
-        When you submit your app, we collect the information you provide: your app name, app URL,
-        description, target audience, budget range, and email address. We also collect standard
-        analytics data (pages visited, referring source) via Google Tag Manager if you consent.
+        On this website we collect standard analytics data (pages visited, referring source,
+        approximate location, device type) via Google Tag Manager and Microsoft Clarity — only after
+        you grant consent via the cookie banner. If you email us directly, we receive the contents
+        of your message and your email address.
       </p>
 
       <h2>How we use it</h2>
       <p>
-        We use your submission data solely to evaluate your app and contact you about onboarding.
-        We do not sell your data to third parties.
+        We use analytics data to understand how visitors use the site and to improve it. We use any
+        email you send us solely to respond. We do not sell your data to third parties.
       </p>
 
       <h2>Cookies</h2>

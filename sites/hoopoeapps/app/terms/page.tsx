@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Terms of Service | HoopoeApps',
-  description: 'Terms governing use of the HoopoeApps free ad management service.',
+  description: 'Terms governing use of the HoopoeApps website.',
   alternates: { canonical: '/terms' },
   openGraph: {
     title: 'Terms of Service | HoopoeApps',
-    description: 'Terms governing use of the HoopoeApps free ad management service.',
+    description: 'Terms governing use of the HoopoeApps website.',
     url: 'https://hoopoeapps.com/terms',
     siteName: 'HoopoeApps',
     type: 'website',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Terms of Service | HoopoeApps',
-    description: 'Terms governing use of the HoopoeApps free ad management service.',
+    description: 'Terms governing use of the HoopoeApps website.',
   },
 }
 
@@ -25,32 +25,32 @@ export default function TermsPage() {
       <p><em>Last updated: April 2026</em></p>
 
       <p>
-        By submitting your app to HoopoeApps, you agree to the following terms.
+        By using the HoopoeApps website, you agree to the following terms.
       </p>
 
-      <h2>Service description</h2>
+      <h2>About this site</h2>
       <p>
-        HoopoeApps provides free ad campaign management (strategy, copy, targeting, optimisation)
-        for eligible apps. You retain full ownership of your ad accounts and all ad spend. We earn
-        no commission on your spend.
-      </p>
-
-      <h2>Eligibility and acceptance</h2>
-      <p>
-        Submission does not guarantee onboarding. We review each application individually and
-        reserve the right to accept or decline at our discretion.
-      </p>
-
-      <h2>Our right to modify or discontinue</h2>
-      <p>
-        We reserve the right to limit, modify, or discontinue the service at any time without
-        prior notice. We are not liable for any loss arising from such changes.
+        HoopoeApps is a company in formation, founded by Ofek Kirzner and Dan Riesel. This website
+        describes our mission and provides links to related projects and tools we use and recommend.
+        We do not currently operate a paid service through this site.
       </p>
 
       <h2>Affiliate links</h2>
       <p>
         Our website contains affiliate links. We may earn a commission if you sign up to tools we
         recommend, at no additional cost to you.
+      </p>
+
+      <h2>Changes to the site</h2>
+      <p>
+        We reserve the right to modify, update, or discontinue any part of the website at any time
+        without prior notice. We are not liable for any loss arising from such changes.
+      </p>
+
+      <h2>No warranty</h2>
+      <p>
+        The content on this site is provided &ldquo;as is&rdquo; for informational purposes. We make
+        no warranties regarding accuracy, completeness, or fitness for a particular purpose.
       </p>
 
       <h2>Contact</h2>

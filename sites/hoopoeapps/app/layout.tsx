@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   description:
     'We believe every great app deserves to find its audience. HoopoeApps is building the tools to make it happen.',
   alternates: { canonical: '/' },
+  icons: {
+    icon: '/logo.svg',
+    apple: '/logo.svg',
+  },
   openGraph: {
     title: 'HoopoeApps — On a mission to revolutionize the way apps sell',
     description:
