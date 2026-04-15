@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { ALL_SLUGS, APPS, type AppSlug } from '../../lib/apps'
@@ -24,7 +23,6 @@ const SWIPE_THRESHOLD = 50
 const DRAG_IGNORE_CLICK = 8
 
 export function AppGallery({ focused }: { focused: AppSlug }) {
-  const router = useRouter()
   const [virtualIndex, setVirtualIndex] = useState(() => N + ALL_SLUGS.indexOf(focused))
   const [instantSnap, setInstantSnap] = useState(false)
   const lastSyncedSlug = useRef<AppSlug>(focused)
@@ -32,14 +30,16 @@ export function AppGallery({ focused }: { focused: AppSlug }) {
   const draggedRef = useRef(false)
 
   // Mirror virtualIndex → URL (?app=slug). Skip the silent snap frames.
+  // Use history.replaceState instead of router.replace so the server
+  // component tree (which reads searchParams) doesn't re-render on every swipe.
   useEffect(() => {
     if (instantSnap) return
     const slug = ALL_SLUGS[virtualIndex % N]
     if (slug !== lastSyncedSlug.current) {
       lastSyncedSlug.current = slug
-      router.replace(`?app=${slug}`, { scroll: false })
+      window.history.replaceState(null, '', `?app=${slug}`)
     }
-  }, [virtualIndex, instantSnap, router])
+  }, [virtualIndex, instantSnap])
 
   // If focused prop changes from outside (deep link, manual URL), jump virtualIndex.
   useEffect(() => {

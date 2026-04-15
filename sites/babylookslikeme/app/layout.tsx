@@ -22,7 +22,7 @@ const fraunces = Fraunces({
 const GTM_ID = (process.env.NEXT_PUBLIC_GTM_ID || '').trim()
 
 export const viewport: Viewport = {
-  themeColor: '#E8618C',
+  themeColor: '#FDFBF9',
 }
 
 export const metadata: Metadata = {
