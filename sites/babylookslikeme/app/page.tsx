@@ -3,12 +3,20 @@ import Image from 'next/image'
 import { AffiliateCTA } from './components/AffiliateCTA'
 import { PageEffects } from './components/PageEffects'
 import { CookiePreferencesLink } from './components/CookiePreferencesLink'
-import { DemoCarousel } from './components/DemoCarousel'
 import { ShareRow } from './components/ShareRow'
-import { ScoreCardMock } from './components/ScoreCardMock'
-import { AvatarMom, AvatarDad } from './components/MockAvatars'
+import { AppGallery } from './components/AppGallery'
+import { APPS, resolveSlug } from '../lib/apps'
+import { buildPageUrl } from '../lib/analytics'
 
-export default function HomePage() {
+export default function HomePage({
+  searchParams,
+}: {
+  searchParams?: { app?: string | string[] }
+}) {
+  const slug = resolveSlug(searchParams?.app)
+  const app = APPS[slug]
+  const pageUrl = buildPageUrl(slug)
+
   return (
     <>
       <PageEffects />
@@ -19,201 +27,100 @@ export default function HomePage() {
           <Link href="/" className="nav-logo nav-wordmark" aria-label="Baby Looks Like Me">
             Baby Looks Like Me
           </Link>
-          <AffiliateCTA className="btn-nav" location="nav">Build It Now</AffiliateCTA>
+          <AffiliateCTA className="btn-nav" location="nav" pageUrl={pageUrl}>
+            Build your app
+          </AffiliateCTA>
         </div>
       </nav>
 
       <main id="main-content">
         {/* ── Hero ── */}
-        <section className="hero">
+        <section className="hero hero--celebration">
           <div className="container">
             <div className="hero-layout">
               <div className="hero-content">
                 <h1 className="hero-headline hero-anim hero-anim-2">
-                  <span className="hero-headline-kicker">Who does my baby look like,</span>
-                  <em>mom <span className="hero-amp">or</span> dad?</em>
+                  <em>
+                    Every baby moment deserves its own{' '}
+                    <span className="hero-highlight">little app</span>.
+                  </em>
                 </h1>
                 <p className="hero-subheadline hero-anim hero-anim-3">
-                  Build your own baby look alike app that scores how much your baby resembles
-                  each parent — with a shareable feature-by-feature breakdown.
+                  From the day you find out you&apos;re expecting to your baby&apos;s first
+                  birthday — every moment is worth celebrating. Pick one below, build your
+                  own app for it in minutes on Base44, and share it with the people you love.
                 </p>
                 <div className="hero-cta-group hero-anim hero-anim-4">
-                  <AffiliateCTA className="btn-primary" location="hero">Build It Now</AffiliateCTA>
-                  <span className="hero-note">Your app is ready in minutes — no coding needed</span>
+                  <AffiliateCTA className="btn-primary" location="hero" pageUrl={pageUrl}>
+                    Build your app
+                  </AffiliateCTA>
+                  <a href="#gallery" className="hero-note hero-note--link">
+                    or pick a baby moment ↓
+                  </a>
                 </div>
               </div>
 
-              {/* Hero phone mockup — resemblance score card */}
-              <div className="hero-phone hero-anim hero-anim-3">
-                <div className="phone-frame phone-frame--tilt">
-                  <div className="phone-notch" />
-                  <div className="phone-screen">
-                    <ScoreCardMock />
-                  </div>
-                </div>
+              <div className="hero-image-wrap hero-anim hero-anim-3">
+                <Image
+                  src="/babylook/use-cases-celebration.jpg"
+                  alt="A family celebrating a new baby together"
+                  width={720}
+                  height={720}
+                  priority
+                  className="hero-image"
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── App Demo ── */}
+        {/* ── Gallery ── */}
+        <section className="gallery-section" id="gallery">
+          <div className="container">
+            <div className="gallery-header reveal">
+              <span className="section-label">Every baby moment, its own app</span>
+              <h2>A little app for every celebration</h2>
+              <p className="gallery-intro">
+                Every new baby brings moments worth celebrating. Pick one — we&apos;ve
+                pre-written the spec. Base44 reads this page and builds the app for you.
+              </p>
+            </div>
+          </div>
+          <AppGallery focused={slug} />
+          <div className="container">
+            <div className="gallery-cta reveal">
+              <AffiliateCTA className="btn-primary" location="gallery_cta" pageUrl={pageUrl}>
+                Build your app
+              </AffiliateCTA>
+            </div>
+          </div>
+        </section>
+
+        {/* ── 3 steps (text-only) ── */}
         <section className="demo">
           <div className="container">
             <div className="demo-header reveal">
-              <span className="section-label">See it in action</span>
-              <h2>Your app, three simple steps</h2>
+              <span className="section-label">Your own app in 3 steps</span>
+              <h2>From click to your own app in minutes</h2>
             </div>
 
-            <DemoCarousel>
-              {/* Step 1: Upload baby + parents */}
-              <div className="demo-step">
-                <div className="phone-frame">
-                  <div className="phone-notch" />
-                  <div className="phone-screen">
-                    <div className="mock-app">
-                      <div className="mock-app-header">Upload 3 photos</div>
-                      <div className="mock-upload-stack">
-                        <div className="mock-upload-row mock-upload-row--filled">
-                          <Image src="/babylook/baby-avatar.jpg" alt="" width={28} height={28} className="mock-upload-photo" />
-                          <span>Baby</span>
-                        </div>
-                        <div className="mock-upload-row">
-                          <AvatarMom />
-                          <span>Mom</span>
-                          <span className="mock-upload-add" aria-hidden="true">+</span>
-                        </div>
-                        <div className="mock-upload-row">
-                          <AvatarDad />
-                          <span>Dad</span>
-                          <span className="mock-upload-add" aria-hidden="true">+</span>
-                        </div>
-                      </div>
-                      <div className="mock-btn mock-btn--disabled">Compare</div>
-                    </div>
-                  </div>
-                </div>
-                <span className="demo-step-number" aria-hidden="true">01</span>
-                <h3 className="demo-step-title">Upload three photos</h3>
-                <p className="demo-step-body">Baby, mom, and dad — that&apos;s all the app needs.</p>
-              </div>
-
-              {/* Step 2: Analyze features */}
-              <div className="demo-step">
-                <div className="phone-frame">
-                  <div className="phone-notch" />
-                  <div className="phone-screen">
-                    <div className="mock-app">
-                      <div className="mock-app-header">Analyzing...</div>
-                      <div className="mock-analyze">
-                        <div className="mock-spinner">
-                          <Image src="/babylook/baby-avatar.jpg" alt="" width={40} height={40} className="mock-spinner-photo" />
-                        </div>
-                        <ul className="mock-analyze-list">
-                          <li className="mock-analyze-item mock-analyze-item--done">Eyes <span>✓</span></li>
-                          <li className="mock-analyze-item mock-analyze-item--done">Nose <span>✓</span></li>
-                          <li className="mock-analyze-item">Mouth <span>…</span></li>
-                          <li className="mock-analyze-item">Face shape</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <span className="demo-step-number" aria-hidden="true">02</span>
-                <h3 className="demo-step-title">Feature-by-feature comparison</h3>
-                <p className="demo-step-body">The app analyzes each feature and scores it against both parents.</p>
-              </div>
-
-              {/* Step 3: Share the score card */}
-              <div className="demo-step">
-                <div className="phone-frame">
-                  <div className="phone-notch" />
-                  <div className="phone-screen">
-                    <ScoreCardMock />
-                  </div>
-                </div>
-                <span className="demo-step-number" aria-hidden="true">03</span>
-                <h3 className="demo-step-title">A little bit of both</h3>
-                <p className="demo-step-body">One tap sends the verdict to the family group chat.</p>
-              </div>
-            </DemoCarousel>
-          </div>
-        </section>
-
-        {/* ── How It Works ── */}
-        <section className="how">
-          <div className="container">
-            <div className="how-header reveal">
-              <span className="section-label">How it works</span>
-              <h2>From click to live app in minutes</h2>
-            </div>
-
-            <div className="steps reveal">
-              <div className="step">
-                <span className="step-number" aria-hidden="true">01</span>
-                <h3 className="step-title">Click the button below</h3>
-                <p className="step-body">
-                  Hit the button and Base44 opens with your baby resemblance app already described.
-                  No blank page, no setup.
-                </p>
-              </div>
-
-              <div className="step">
-                <span className="step-number" aria-hidden="true">02</span>
-                <h3 className="step-title">Your app gets built</h3>
-                <p className="step-body">
-                  AI generates a fully functional app — photo upload, feature analysis,
-                  resemblance scoring, shareable cards — all in minutes.
-                </p>
-              </div>
-
-              <div className="step">
-                <span className="step-number" aria-hidden="true">03</span>
-                <h3 className="step-title">Customize and launch</h3>
-                <p className="step-body">
-                  Add your name, tweak the design, connect a domain if you want.
-                  Then share it with the world.
-                </p>
-              </div>
-            </div>
-
-            <div className="how-cta reveal">
-              <AffiliateCTA className="btn-primary" location="how_it_works">Build It Now</AffiliateCTA>
-            </div>
-          </div>
-        </section>
-
-        {/* ── Use Cases ── */}
-        <section className="use-cases">
-          <div className="container">
-            <div className="use-cases-header reveal">
-              <h2>Every family has the argument. Now the debate ends with a score card.</h2>
-            </div>
-
-            <div className="use-cases-hero reveal">
-              <div className="use-cases-hero-image">
-                <Image
-                  src="/babylook/use-cases-celebration.jpg"
-                  alt="Family gathered together celebrating a new baby"
-                  loading="lazy"
-                  width={800}
-                  height={600}
-                />
-              </div>
-              <div className="use-cases-hero-cards">
-                <div className="use-case-item">
-                  <h3>Baby shower games</h3>
-                  <p>Play the ultimate guess-who — show a newborn photo and let guests vote before the verdict drops.</p>
-                </div>
-                <div className="use-case-item">
-                  <h3>Meet-the-baby announcements</h3>
-                  <p>Reveal who the baby takes after alongside the first photos.</p>
-                </div>
-                <div className="use-case-item">
-                  <h3>Grandparent gifts</h3>
-                  <p>Grandparents love proof the baby looks like their side. Give them the receipts.</p>
-                </div>
-              </div>
-            </div>
+            <ol className="steps-simple reveal">
+              <li>
+                <span className="steps-simple-num" aria-hidden="true">01</span>
+                <h3>Sign up to Base44</h3>
+                <p>A free account takes about 20 seconds. No credit card.</p>
+              </li>
+              <li>
+                <span className="steps-simple-num" aria-hidden="true">02</span>
+                <h3>Paste the prompt, hit Build</h3>
+                <p>Base44 reads this page and builds the app you picked — instantly.</p>
+              </li>
+              <li>
+                <span className="steps-simple-num" aria-hidden="true">03</span>
+                <h3>Share it with family</h3>
+                <p>Your app is live. Send the link to the group chat and let everyone play.</p>
+              </li>
+            </ol>
           </div>
         </section>
 
@@ -221,33 +128,37 @@ export default function HomePage() {
         <section className="faq" id="faq">
           <div className="container">
             <div className="faq-header reveal">
-              <span className="section-label">Questions parents ask</span>
-              <h2>Baby look alike app: how it works</h2>
+              <span className="section-label">Common questions</span>
+              <h2>How the baby moment apps work</h2>
             </div>
             <div className="faq-list reveal">
               <details className="faq-item">
-                <summary>Who does my baby look like — is there an app for that?</summary>
-                <p>Yes. This page shows you how to build your own baby resemblance app in minutes. Upload photos of your baby, mom, and dad — the app scores the resemblance feature by feature and gives you a shareable verdict with a percentage (for example, &ldquo;62% Dad, 38% Mom&rdquo;).</p>
+                <summary>What is a &ldquo;baby moment app&rdquo;?</summary>
+                <p>A little web app tailor-made for a single occasion around a new baby — a look-alike score, a gender reveal page, a baby-shower game, a monthly photo collage. Each one lives on its own link you can share.</p>
               </details>
               <details className="faq-item">
-                <summary>How accurate is AI baby resemblance scoring?</summary>
-                <p>It&apos;s entertainment, not science. The AI compares visual features across photos — think personality quiz, not DNA test. Results vary with photo quality, lighting, and angles. It&apos;s meant to be fun and shareable, not authoritative.</p>
+                <summary>How is the app actually built?</summary>
+                <p>You build it on Base44, a no-code AI app builder. Click a &ldquo;Build your app&rdquo; button and we hand Base44 the URL of this page. Base44 reads the spec and generates a working app for you. You can tweak anything afterwards — design, copy, features.</p>
               </details>
               <details className="faq-item">
-                <summary>Does my baby look more like mom or dad?</summary>
-                <p>Babies change a lot during the first year. Research suggests newborns often look slightly more like their fathers early on, but this shifts fast. For your own baby, the AI gives you a fun percentage score right now — just upload three photos.</p>
+                <summary>Do I need to write the prompt myself?</summary>
+                <p>No. We pre-wrote the prompt: &ldquo;Please build the application that is described at this URL…&rdquo; with a link back to this page. Base44&apos;s AI reads the page, picks up the spec of the app you selected, and builds it.</p>
               </details>
               <details className="faq-item">
-                <summary>Is the app free to use?</summary>
-                <p>You build your own version on Base44, a no-code app builder. Base44 has a free tier, so you can get started without a credit card.</p>
+                <summary>Is it free?</summary>
+                <p>Base44 has a free tier, so you can get started without a credit card. Some apps may need a paid plan if they grow — Base44&apos;s pricing details live on their site.</p>
               </details>
               <details className="faq-item">
-                <summary>What features does the app compare?</summary>
-                <p>Eyes, nose, mouth, and overall face shape — each scored against both parents. The final output is a percentage score plus a feature-by-feature breakdown on a shareable card.</p>
+                <summary>Which apps can I build here?</summary>
+                <p>Today: a baby look-alike scorer, a future-baby preview, a gender reveal page, a baby shower game, and a monthly photo collage. More baby moments coming.</p>
               </details>
               <details className="faq-item">
-                <summary>Can grandparents use it?</summary>
-                <p>Absolutely. The app is simple enough for anyone in the family to use — upload three photos, tap Compare, get a result. No account, no setup, no tech skills needed.</p>
+                <summary>Can grandparents use the apps?</summary>
+                <p>Absolutely. The apps you build are simple web pages — anyone in the family can open the link and play. No account, no setup, no tech skills needed.</p>
+              </details>
+              <details className="faq-item">
+                <summary>Is this endorsed by Base44?</summary>
+                <p>No. This is an independent fan site that links to Base44 via an affiliate partnership. We&apos;re not officially associated with Base44.</p>
               </details>
             </div>
           </div>
@@ -258,9 +169,15 @@ export default function HomePage() {
           <div className="container">
             <div className="final-cta-inner reveal">
               <span className="section-label">Ready?</span>
-              <h2>Build a baby look alike app right now</h2>
+              <h2>Build your own baby moment app</h2>
               <p className="final-cta-sub">One click. One prompt. Your app is live in minutes.</p>
-              <AffiliateCTA className="btn-primary btn-primary--lg" location="final_cta">Build It Now</AffiliateCTA>
+              <AffiliateCTA
+                className="btn-primary btn-primary--lg"
+                location="final_cta"
+                pageUrl={pageUrl}
+              >
+                Build your app
+              </AffiliateCTA>
               <span className="final-cta-note">No coding required. Built on Base44.</span>
               <ShareRow />
             </div>
@@ -290,11 +207,15 @@ export default function HomePage() {
               or officially associated with Base44.
             </p>
             <p className="footer-disclaimer">
-              This site is intended for entertainment purposes. AI resemblance scores are fictional,
-              not medical or genetic analysis, and should not be used to determine parentage.
-              This site is not directed at children under 13.
+              This site is intended for entertainment purposes. Any AI-generated output (resemblance
+              scores, future-baby previews, etc.) is fictional, not medical or genetic analysis, and
+              should not be used to determine parentage. This site is not directed at children under 13.
             </p>
-            <p className="footer-disclaimer">The mockups and screenshots shown on this page are illustrations of what a resemblance-scoring app could look like. The actual app you build on Base44 is generated fresh from your prompt and will look different — its final design, features, and look-and-feel are up to you.</p>
+            <p className="footer-disclaimer">
+              The mockups and screenshots shown on this page are illustrations of what each app
+              could look like. The actual app you build on Base44 is generated fresh from the prompt
+              and will look different — its final design, features, and look-and-feel are up to you.
+            </p>
             <p className="footer-copyright">&copy; 2026 Baby Looks Like Me</p>
           </div>
         </div>
