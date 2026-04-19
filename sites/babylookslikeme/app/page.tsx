@@ -28,7 +28,7 @@ export default function HomePage({
             Baby Looks Like Me
           </Link>
           <AffiliateCTA className="btn-nav" location="nav" pageUrl={pageUrl}>
-            Build your app
+            Try it free
           </AffiliateCTA>
         </div>
       </nav>
@@ -41,18 +41,18 @@ export default function HomePage({
               <div className="hero-content">
                 <h1 className="hero-headline hero-anim hero-anim-2">
                   <em>
-                    Every baby moment deserves its own{' '}
-                    <span className="hero-highlight">little app</span>.
+                    <span className="hero-highlight">5 fun apps</span> for your
+                    baby&apos;s first year.
                   </em>
                 </h1>
                 <p className="hero-subheadline hero-anim hero-anim-3">
                   From the day you find out you&apos;re expecting to your baby&apos;s first
-                  birthday — every moment is worth celebrating. Pick one below, build your
-                  own app for it in minutes on Base44, and share it with the people you love.
+                  birthday — every moment is worth celebrating. Pick one below, and share
+                  it with the people you love.
                 </p>
                 <div className="hero-cta-group hero-anim hero-anim-4">
                   <AffiliateCTA className="btn-primary" location="hero" pageUrl={pageUrl}>
-                    Build your app
+                    Try it free
                   </AffiliateCTA>
                   <a href="#gallery" className="hero-note hero-note--link">
                     or pick a baby moment ↓
@@ -82,7 +82,7 @@ export default function HomePage({
               <h2>A little app for every celebration</h2>
               <p className="gallery-intro">
                 Every new baby brings moments worth celebrating. Pick one — we&apos;ve
-                pre-written the spec. Base44 reads this page and builds the app for you.
+                pre-written the spec and your app will be built instantly.
               </p>
             </div>
           </div>
@@ -90,7 +90,7 @@ export default function HomePage({
           <div className="container">
             <div className="gallery-cta reveal">
               <AffiliateCTA className="btn-primary" location="gallery_cta" pageUrl={pageUrl}>
-                Build your app
+                Try it free
               </AffiliateCTA>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function HomePage({
                 location="final_cta"
                 pageUrl={pageUrl}
               >
-                Build your app
+                Try it free
               </AffiliateCTA>
               <span className="final-cta-note">No coding required. Built on Base44.</span>
               <ShareRow />
