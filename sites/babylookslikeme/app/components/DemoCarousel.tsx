@@ -1,6 +1,7 @@
 'use client'
 
-import { Children, useEffect, useRef, useState, type ReactNode } from 'react'
+import { Children, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { trackEvent } from '../../lib/analytics'
 
 interface Props {
   children: ReactNode
@@ -17,6 +18,15 @@ export function DemoCarousel({ children }: Props) {
   const trackRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState(0)
 
+  const seenSlides = useRef(new Set<number>([0]))
+
+  const onSlideChange = useCallback((index: number) => {
+    if (!seenSlides.current.has(index)) {
+      seenSlides.current.add(index)
+      trackEvent('carousel_slide_view', { slide: index + 1, total_slides: slides.length })
+    }
+  }, [slides.length])
+
   // Sync active dot with scroll position (mobile only)
   useEffect(() => {
     const el = trackRef.current
@@ -29,7 +39,9 @@ export function DemoCarousel({ children }: Props) {
         const w = el.clientWidth
         if (w === 0) return
         const i = Math.round(el.scrollLeft / w)
-        setActive(Math.max(0, Math.min(slides.length - 1, i)))
+        const clamped = Math.max(0, Math.min(slides.length - 1, i))
+        setActive(clamped)
+        onSlideChange(clamped)
       })
     }
 
@@ -38,11 +50,12 @@ export function DemoCarousel({ children }: Props) {
       el.removeEventListener('scroll', onScroll)
       if (raf) cancelAnimationFrame(raf)
     }
-  }, [slides.length])
+  }, [slides.length, onSlideChange])
 
   const goTo = (i: number) => {
     const el = trackRef.current
     if (!el) return
+    trackEvent('carousel_dot_click', { slide: i + 1 })
     el.scrollTo({ left: i * el.clientWidth, behavior: 'smooth' })
   }
 
