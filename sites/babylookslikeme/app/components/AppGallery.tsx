@@ -3,6 +3,7 @@
 import type { CSSProperties, PointerEvent as ReactPointerEvent } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { ALL_SLUGS, APPS, type AppSlug } from '../../lib/apps'
+import { BASE44_AFFILIATE_URL, buildPageUrl, buildPromptForUrl, trackEvent } from '../../lib/analytics'
 import { ScoreCardMock } from './ScoreCardMock'
 import { FutureFaceMock } from './FutureFaceMock'
 import { GenderRevealMock } from './GenderRevealMock'
@@ -157,7 +158,17 @@ export function AppGallery({ focused }: { focused: AppSlug }) {
                     e.preventDefault()
                     return
                   }
-                  if (i !== virtualIndex) setVirtualIndex(i)
+                  if (i === virtualIndex) {
+                    const pageUrl = buildPageUrl(slug)
+                    trackEvent('affiliate_cta_click', { location: 'gallery_card', pageUrl })
+                    const prompt = buildPromptForUrl(pageUrl)
+                    window.dispatchEvent(
+                      new CustomEvent('base44:cta-click', { detail: { location: 'gallery_card', prompt, pageUrl } }),
+                    )
+                    window.open(BASE44_AFFILIATE_URL, '_blank', 'noopener,noreferrer')
+                  } else {
+                    setVirtualIndex(i)
+                  }
                 }}
                 className={`gallery-card ${isFocused ? 'gallery-card--focused' : ''}`}
                 aria-current={isFocused ? 'true' : undefined}
