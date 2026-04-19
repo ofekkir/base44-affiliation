@@ -10,3 +10,6 @@ npm-debug.log*
 
 # TypeScript build artifacts
 tsconfig.tsbuildinfo
+
+# Sentry
+.env.sentry-build-plugin
