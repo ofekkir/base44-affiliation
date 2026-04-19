@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { AffiliateCTA } from './components/AffiliateCTA'
 import { PageEffects } from './components/PageEffects'
 import { CookiePreferencesLink } from './components/CookiePreferencesLink'
@@ -45,30 +44,6 @@ export default function HomePage({
                     baby&apos;s first year.
                   </em>
                 </h1>
-                <p className="hero-subheadline hero-anim hero-anim-3">
-                  From the day you find out you&apos;re expecting to your baby&apos;s first
-                  birthday — every moment is worth celebrating. Pick one below, and share
-                  it with the people you love.
-                </p>
-                <div className="hero-cta-group hero-anim hero-anim-4">
-                  <AffiliateCTA className="btn-primary" location="hero" pageUrl={pageUrl}>
-                    Try it free
-                  </AffiliateCTA>
-                  <a href="#gallery" className="hero-note hero-note--link">
-                    or pick a baby moment ↓
-                  </a>
-                </div>
-              </div>
-
-              <div className="hero-image-wrap hero-anim hero-anim-3">
-                <Image
-                  src="/babylook/use-cases-celebration.jpg"
-                  alt="A family celebrating a new baby together"
-                  width={720}
-                  height={720}
-                  priority
-                  className="hero-image"
-                />
               </div>
             </div>
           </div>
@@ -76,7 +51,13 @@ export default function HomePage({
 
         {/* ── Gallery ── */}
         <section className="gallery-section" id="gallery">
+          <AppGallery focused={slug} />
           <div className="container">
+            <div className="gallery-cta">
+              <AffiliateCTA className="btn-primary" location="gallery_cta" pageUrl={pageUrl}>
+                Try it free
+              </AffiliateCTA>
+            </div>
             <div className="gallery-header reveal">
               <span className="section-label">Every baby moment, its own app</span>
               <h2>A little app for every celebration</h2>
@@ -84,14 +65,6 @@ export default function HomePage({
                 Every new baby brings moments worth celebrating. Pick one — we&apos;ve
                 pre-written the spec and your app will be built instantly.
               </p>
-            </div>
-          </div>
-          <AppGallery focused={slug} />
-          <div className="container">
-            <div className="gallery-cta reveal">
-              <AffiliateCTA className="btn-primary" location="gallery_cta" pageUrl={pageUrl}>
-                Try it free
-              </AffiliateCTA>
             </div>
           </div>
         </section>

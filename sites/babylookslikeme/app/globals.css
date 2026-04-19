@@ -192,7 +192,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  padding: 5rem 0 5.5rem;
+  padding: 3rem 0 1.5rem;
   overflow: hidden;
 }
 /* Grain texture */
@@ -1303,9 +1303,11 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   :root { --section-gap: 4rem; }
 
   .hero {
-    padding: 3rem 0 1rem;
+    padding: 0.75rem 0 0;
     text-align: center;
   }
+  .hero-headline { margin-bottom: 0.5rem; }
+  .hero-headline em { font-size: clamp(1.5rem, 4.5vw + 0.25rem, 2rem); }
   .use-cases-stat {
     padding: 1.25rem 1.25rem;
     margin: 2rem 0;
@@ -1314,7 +1316,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   .hero-subheadline { margin: 0 auto 2.5rem; }
   .hero-cta-group { align-items: center; }
   .hero-image-wrap { display: none; }
-  .hero-subheadline { margin: 0 auto 1.5rem; }
+  .gallery-section { padding-top: 0; }
   /* Mobile: prevent primary CTAs from overflowing the 326px content width. */
   .hero-cta-group .btn-primary,
   .final-cta-inner .btn-primary {
@@ -1387,11 +1389,14 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   .footer-top { flex-direction: column; gap: 1rem; }
 
   .cookie-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem 1.25rem;
-    gap: 0.75rem;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    font-size: 0.6875rem;
   }
+  .cookie-banner p { margin: 0; }
+  .cookie-btn { padding: 0.25rem 0.625rem; font-size: 0.6875rem; }
 }
 
 @media (max-width: 480px) {
@@ -1522,7 +1527,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
 
 /* ===== APP GALLERY ===== */
 .gallery-section {
-  padding: 2rem 0 var(--section-gap);
+  padding: 0 0 var(--section-gap);
   background: linear-gradient(180deg, transparent 0%, var(--color-surface) 100%);
 }
 .gallery-header {
@@ -1695,7 +1700,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
 /* Gallery CTA — single button under the carousel */
 .gallery-cta {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 /* ===== 3 STEPS (text-only) ===== */
@@ -2035,7 +2040,12 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
     --gallery-gap: 1rem;
   }
   .gallery-card .phone-frame { width: 200px; }
-  .gallery-card-title { font-size: 0.9375rem; }
+  .gallery-card .phone-screen { height: 355px; min-height: 355px; }
+  .gallery-card-title { font-size: 0.9375rem; min-height: 0; }
+  .gallery-card-occasion { font-size: 0.6875rem; }
+  .gallery-viewport { padding: 1rem 0; }
+  .gallery-dots { margin-top: 0.25rem; }
+  .gallery-cta { margin-top: 0.5rem; }
   .gallery-arrow--prev { left: 0.5rem; }
   .gallery-arrow--next { right: 0.5rem; }
 }
