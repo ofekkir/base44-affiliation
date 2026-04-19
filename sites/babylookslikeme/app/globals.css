@@ -167,7 +167,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 4rem;
+  height: 3rem;
 }
 .nav-logo {
   display: flex;
@@ -178,7 +178,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   font-family: var(--font-display);
   font-weight: 800;
   font-style: italic;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--color-primary);
   text-decoration: none;
   letter-spacing: -0.01em;
@@ -192,7 +192,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
 /* ===== HERO ===== */
 .hero {
   position: relative;
-  padding: 3rem 0 1.5rem;
+  padding: 1.5rem 0 1rem;
   overflow: hidden;
 }
 /* Grain texture */
@@ -225,7 +225,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   text-align: center;
 }
 .hero-content {
-  max-width: 620px;
+  max-width: 800px;
   margin: 0 auto;
 }
 .hero-headline {
@@ -247,9 +247,9 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   display: block;
   color: var(--color-primary);
   padding-bottom: 0.04em;
-  font-size: clamp(2rem, 8.5vw, 5.1rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   text-wrap: balance;
-  line-height: 0.98;
+  line-height: 1.05;
 }
 .hero-highlight {
   color: #4a8fae;
@@ -342,7 +342,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
   /* Fixed height so every phone mockup is exactly the same size, regardless of
      the mock's internal content. Prevents the carousel from jumping vertically
      when the focused card changes. */
-  height: 380px;
+  height: clamp(300px, 26vw, 380px);
   display: flex;
   flex-direction: column;
 }
@@ -1547,12 +1547,12 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
 }
 .gallery-viewport {
   overflow: hidden;
-  padding: 2.5rem 0;
+  padding: 1.5rem 0;
   touch-action: pan-y;
 }
 .gallery-track {
-  --card-width: 240px;
-  --gallery-gap: 2rem;
+  --card-width: clamp(180px, 16vw, 240px);
+  --gallery-gap: clamp(1rem, 1.5vw, 2rem);
   --focused-index: 0;
   position: relative;
   left: 50%;
@@ -1627,7 +1627,7 @@ h3 { font-size: clamp(1.125rem, 1.5vw, 1.375rem); font-weight: 600; }
 .gallery-card--focused .phone-frame {
   box-shadow: 0 30px 60px -24px rgba(232, 97, 140, 0.45);
 }
-.gallery-card .phone-frame { width: 240px; }
+.gallery-card .phone-frame { width: clamp(180px, 16vw, 240px); }
 
 /* Arrow controls */
 .gallery-arrow {
