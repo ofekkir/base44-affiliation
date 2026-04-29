@@ -32,16 +32,13 @@ export default function HomePage() {
                 />
               </div>
               <div className="team-content">
-                <span className="section-label">Our mission</span>
-                <h1>On a mission to revolutionize the way apps sell</h1>
+                <span className="section-label">Who we are</span>
                 <p className="team-bio-text">
                   We&apos;re Ofek and Dan — both Forbes 30 Under 30, both builders who&apos;ve shipped
-                  products at scale. We&apos;ve seen too many well-crafted apps stay invisible simply
-                  because their makers didn&apos;t know how to run ads.
+                  products at scale.
                 </p>
                 <p className="team-bio-text">
-                  We started HoopoeApps to change that. We believe every great app deserves
-                  to find its audience — and we&apos;re building the tools to make it happen.
+                  We&apos;re building something big. Stay tuned.
                 </p>
                 <div className="team-links">
                   <a href="https://www.linkedin.com/in/ofekkirzner/" className="team-linkedin-link" target="_blank" rel="noopener noreferrer">
@@ -59,19 +56,8 @@ export default function HomePage() {
 
       {/* ── Footer ── */}
       <footer className="footer">
-        <div className="container footer-links-area">
-          <div className="footer-col">
-            <h4 className="footer-col-heading">HoopoeApps</h4>
-            <a href="mailto:hello@hoopoeapps.com">Contact</a>
-          </div>
-          <div className="footer-col">
-            <h4 className="footer-col-heading">Friends</h4>
-            <a href="https://www.israelevcharge.com" target="_blank" rel="noopener noreferrer nofollow">Israel EV Charge</a>
-            <a href="https://www.israelevcharge.com/blog" target="_blank" rel="noopener noreferrer nofollow">EV Charging Blog</a>
-            <a href="https://www.israelevcharge.com/quiz" target="_blank" rel="noopener noreferrer nofollow">Find Your Charger</a>
-          </div>
-        </div>
         <div className="container footer-bottom">
+          <a href="mailto:hello@hoopoeapps.com" className="footer-contact">Contact</a>
           <p className="footer-copyright">&copy; 2026 HoopoeApps (in formation)</p>
         </div>
       </footer>
